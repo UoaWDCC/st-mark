@@ -6,9 +6,9 @@ import Spinner from "../../components/common/Spinner";
 import ProfileCard from "../../components/Directory/ProfileCard";
 import SearchBar from "../../components/Directory/SearchBar";
 import useGet from "../../hooks/useGet";
-import { IPerson } from "../../types/schema";
+import { IPerson, IDate } from "../../types/schema";
 import styles from "./DirectoryPage.module.css";
-import { filterPeopleByFullName } from "../../utils/filter";
+import { filterPeopleByFullName, filterPeopleByDeathDate } from "../../utils/filter";
 import { sortPeopleByFullName } from "../../utils/sort";
 import Error from "../../components/common/Error";
 import { ServerError } from "../../components/common/Error/ErrorUtils";
@@ -18,6 +18,7 @@ const DirectoryPage: React.FC = () => {
   usePageTitle("Directory");
 
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [deathDate, setDeathDate] = useState<IDate>({});
   const { data: people, status, isLoading } = useGet<IPerson[]>("/api/person");
   const history = useHistory();
 
@@ -44,7 +45,7 @@ const DirectoryPage: React.FC = () => {
               direction="row"
               className={styles.grid}
             >
-              {filterPeopleByFullName(people, searchTerm).map(
+              {filterPeopleByDeathDate(filterPeopleByFullName(people, searchTerm), deathDate).map(
                 (person: IPerson) => {
                   return (
                     <Grid item key={person._id}>
