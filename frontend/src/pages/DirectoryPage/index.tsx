@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Divider, Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import NavBarDirectory from "../../components/common/NavBarDirectory/indexDirectory";
+import NavBar from "../../components/common/NavBar";
 import Spinner from "../../components/common/Spinner";
 import ProfileCard from "../../components/Directory/ProfileCard";
 import SearchBar from "../../components/Directory/SearchBar";
 import useGet from "../../hooks/useGet";
 import { IPerson, IDate } from "../../types/schema";
 import styles from "./DirectoryPage.module.css";
-import { filterPeopleByFullName, filterPeopleByDeathDate } from "../../utils/filter";
+import {
+  filterPeopleByFullName,
+  filterPeopleByDeathDate,
+  filterWithinWeek,
+} from "../../utils/filter";
 import { sortPeopleByFullName } from "../../utils/sort";
 import Error from "../../components/common/Error";
 import { ServerError } from "../../components/common/Error/ErrorUtils";
@@ -21,9 +25,15 @@ const DirectoryPage: React.FC = () => {
   const [deathDate, setDeathDate] = useState<IDate>({});
   const { data: people, status, isLoading } = useGet<IPerson[]>("/api/person");
   const history = useHistory();
+  const [anniversaryPeople, setAnniversaryPeople] = useState<IPerson[]>([]);
 
   useEffect(() => {
     if (people) sortPeopleByFullName(people);
+  }, [people]);
+
+  useEffect(() => {
+    people &&
+      setAnniversaryPeople(filterWithinWeek(people, new Date(2022, 6, 12)));
   }, [people]);
 
   const handleClick = (id: string): void => {
@@ -32,10 +42,13 @@ const DirectoryPage: React.FC = () => {
 
   return (
     <div className={styles.pageContainer}>
-      <NavBarDirectory />
+      <NavBar />
       {people && (
         <>
-          <SearchBar onSearchTermChange={setSearchTerm} />
+          <SearchBar
+            onSearchTermChange={setSearchTerm}
+            onDeathDateChange={setDeathDate}
+          />
           <Divider className={styles.divider} />
           <div className={styles.gridParent}>
             <Grid
@@ -45,18 +58,20 @@ const DirectoryPage: React.FC = () => {
               direction="row"
               className={styles.grid}
             >
-              {filterPeopleByDeathDate(filterPeopleByFullName(people, searchTerm), deathDate).map(
-                (person: IPerson) => {
-                  return (
-                    <Grid item key={person._id}>
-                      <ProfileCard
-                        person={person}
-                        onClick={() => handleClick(person._id)}
-                      />
-                    </Grid>
-                  );
-                }
-              )}
+              {filterPeopleByDeathDate(
+                filterPeopleByFullName(people, searchTerm),
+                deathDate
+              ).map((person: IPerson) => {
+                return (
+                  <Grid item key={person._id}>
+                    <ProfileCard
+                      person={person}
+                      onClick={() => handleClick(person._id)}
+                      isStyled={anniversaryPeople.includes(person)}
+                    />
+                  </Grid>
+                );
+              })}
             </Grid>
           </div>
         </>

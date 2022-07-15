@@ -1,0 +1,316 @@
+{
+  "row1": {
+    "orientation": "northwest_wall_angle-2.1-180",
+    "anchor": {
+      "start": { "plotNumber": 76, "corner": 1 },
+      "displacements": [
+        { "distance": [28.94], "bearing": "111+this_orientation" }
+      ]
+    },
+    "width": [8],
+    "plots": [{ "plotNumber": 82, "height": [8], "registeredName": "Bishop" }]
+  },
+  "row2": {
+    "anchor": {
+      "start": { "plotNumber": 82, "corner": 3 },
+      "displacements": [
+        { "distance": [7.7425], "bearing": "last_orientation-133.5" }
+      ]
+    },
+    "orientation": "last_orientation+1.5",
+    "width": [8],
+    "plots": [
+      { "plotNumber": 83, "height": [9], "registeredName": "Bald" },
+      { "plotNumber": 84, "height": [9], "registeredName": "Tanner" },
+      { "plotNumber": 85, "height": [7], "registeredName": "Price" }
+    ]
+  },
+  "row3": {
+    "anchor": {
+      "start": { "plotNumber": 85, "corner": 3 },
+      "displacements": [
+        { "distance": [3.27], "bearing": "last_orientation-117" }
+      ]
+    },
+    "orientation": "last_orientation - .5",
+    "width": [8],
+    "plots": [
+      { "plotNumber": 86, "height": [5], "registeredName": "Reynell" },
+      { "plotNumber": 87, "height": [4], "registeredName": "Graves Unknown" }
+    ]
+  },
+  "row4": {
+    "anchor": {
+      "start": { "plotNumber": 87, "corner": 3 },
+      "displacements": [{ "distance": [2.4], "bearing": "last_orientation-90" }]
+    },
+    "width": [9],
+    "plots": [{ "plotNumber": 88, "height": [6], "registeredName": "James" }]
+  },
+  "row5": {
+    "anchor": {
+      "start": { "plotNumber": 88, "corner": 3 },
+      "displacements": [
+        { "distance": [6.193], "bearing": "last_orientation-90" }
+      ]
+    },
+    "width": [16],
+    "plots": [{ "plotNumber": 89, "height": [7, 6], "registeredName": "Jones" }]
+  },
+  "row6": {
+    "anchor": {
+      "start": { "plotNumber": 89, "corner": 3 },
+      "displacements": [
+        { "distance": [0.705], "bearing": "last_orientation-90" }
+      ]
+    },
+    "width": [8],
+    "plots": [
+      { "plotNumber": 90, "height": [6, 6], "registeredName": "O'Sullivan" }
+    ]
+  },
+  "row7": {
+    "anchor": {
+      "start": { "plotNumber": 90, "corner": 3 },
+      "displacements": [
+        { "distance": [0.705], "bearing": "last_orientation+90" }
+      ]
+    },
+    "width": [8],
+    "plots": [
+      { "plotNumber": 91, "height": [8, 6], "registeredName": "Westwood" },
+      { "plotNumber": 92, "height": [12, 3], "registeredName": "Cruickshank" },
+      { "plotNumber": 93, "height": [4, 6], "registeredName": "Rich" },
+      { "plotNumber": 94, "height": [8], "registeredName": "Pirie" },
+      { "plotNumber": 95, "height": [4.6], "registeredName": "Whyman" }
+    ]
+  },
+  "row8": {
+    "anchor": {
+      "start": { "plotNumber": 86, "corner": 1 },
+      "displacements": []
+    },
+    "width": [8],
+    "plots": [
+      { "plotNumber": 96, "height": [9], "registeredName": "Phillip" },
+      {
+        "plotNumber": 97,
+        "height": [4],
+        "registeredName": "Payne",
+        "actual width": [9]
+      }
+    ]
+  },
+  "row9": {
+    "anchor": {
+      "start": { "plotNumber": 97, "corner": 3 },
+      "displacements": []
+    },
+    "width": [8],
+    "plots": [
+      {
+        "plotNumber": 98,
+        "height": [4, 6],
+        "registeredName": "Short",
+        "actual width": [6, 6],
+        "align": "right"
+      }
+    ]
+  },
+  "row10": {
+    "anchor": {
+      "start": { "plotNumber": 89, "corner": 2 },
+      "displacements": [{ "distance": [5], "bearing": "last_orientation" }]
+    },
+    "width": [19],
+    "plots": [{ "plotNumber": 99, "height": [5], "registeredName": "Speary" }]
+  },
+  "row11": {
+    "anchor": {
+      "start": { "plotNumber": 90, "corner": 1 },
+      "displacements": []
+    },
+    "width": [19],
+    "plots": [
+      { "plotNumber": 100, "height": [6, 6], "registeredName": "Tozer" }
+    ]
+  },
+  "row12": {
+    "anchor": {
+      "start": { "plotNumber": 91, "corner": 1 },
+      "displacements": [{ "distance": [2.1], "bearing": "last_orientation+90" }]
+    },
+    "width": [8],
+    "plots": [
+      { "height": [0.711] },
+      {
+        "plotNumber": 101,
+        "height": [7],
+        "registeredName": "Buckland",
+        "actual width": [10],
+        "align": "right"
+      },
+      {
+        "plotNumber": 102,
+        "height": [8],
+        "registeredName": "Bent",
+        "actual width": [8, 6],
+        "align": "right"
+      },
+      { "plotNumber": 103, "height": [9], "registeredName": "Lewis" },
+      { "plotNumber": 104, "height": [9], "registeredName": "Ching" }
+    ]
+  },
+  "row13": {
+    "anchor": {
+      "start": { "plotNumber": 82, "corner": 1 },
+      "displacements": [
+        { "distance": [3.5], "bearing": "-last_orientation+90+38" }
+      ]
+    },
+    "width": [9],
+    "plots": [
+      { "plotNumber": 105, "height": [11], "registeredName": "Cochrane" }
+    ]
+  },
+  "row14": {
+    "anchor": {
+      "start": { "plotNumber": 105, "corner": 3 },
+      "displacements": [
+        { "distance": [2.184], "bearing": "last_orientation-90" }
+      ]
+    },
+    "width": [8],
+    "plots": [
+      { "height": [0.54] },
+      {
+        "plotNumber": 106,
+        "height": [7, 6],
+        "registeredName": "Waters",
+        "actual width": [9]
+      },
+      { "height": [1.454] },
+      { "plotNumber": 107, "height": [4], "registeredName": "Rhodes" },
+      { "plotNumber": 108, "height": [7, 6], "registeredName": "McCullen" },
+      { "plotNumber": 109, "height": [8], "registeredName": "A. Clark" },
+      { "plotNumber": 110, "height": [9], "registeredName": "Ladder" },
+      { "plotNumber": 111, "height": [9], "registeredName": "C. Hesketh" },
+      { "height": [12, 6] },
+      {
+        "plotNumber": 112,
+        "height": [8],
+        "registeredName": "Morrow",
+        "shift": [6.9]
+      },
+      { "plotNumber": 113, "height": [7], "registeredName": "J. Dilworth" },
+      { "plotNumber": 114, "height": [4, 6], "registeredName": "A. Dilworth" },
+      { "plotNumber": 115, "height": [8], "registeredName": "Lumpkin" },
+      { "plotNumber": 116, "height": [4, 6], "registeredName": "Pearce" },
+      { "plotNumber": 117, "height": [9], "registeredName": "Harrison" }
+    ]
+  },
+  "row15": {
+    "anchor": {
+      "start": { "plotNumber": 105, "corner": 2 },
+      "displacements": [
+        { "distance": [1.92], "bearing": "last_orientation+90" },
+        { "distance": [8, 4], "bearing": "last_orientation" }
+      ]
+    },
+    "width": [8],
+    "plots": [
+      {
+        "plotNumber": 118,
+        "height": [8, 4],
+        "registeredName": "Woodward",
+        "actual width": [8, 4]
+      },
+      { "plotNumber": 119, "height": [9], "registeredName": "H. Dent" },
+      { "plotNumber": 120, "height": [8], "registeredName": "Osborne" },
+      { "plotNumber": 121, "height": [8, 6], "registeredName": "Seccombe" },
+      {
+        "plotNumber": 122,
+        "height": [12, 6],
+        "registeredName": "Stichbury",
+        "shift": [0.8]
+      },
+      { "plotNumber": 123, "height": [5], "registeredName": "Donaldson" },
+      { "plotNumber": 124, "height": [13], "registeredName": "E. Hesketh" },
+      { "plotNumber": 125, "height": [14], "registeredName": "Walker" },
+      { "plotNumber": 126, "height": [8, 6], "registeredName": "Stilton" },
+      { "plotNumber": 127, "height": [8], "registeredName": "Rey. W. Beatty" },
+      { "height": [2.31] },
+      { "plotNumber": 128, "height": [9], "registeredName": "King" },
+      { "height": [2.645] },
+      { "plotNumber": 129, "height": [9], "registeredName": "Roach" }
+    ]
+  },
+  "row16": {
+    "anchor": {
+      "start": { "plotNumber": 118, "corner": 1 },
+      "displacements": [
+        { "distance": [4.571], "bearing": "last_orientation+90-16.5" }
+      ]
+    },
+    "orientation": "last_orientation+3.5",
+    "width": [8],
+    "plots": [
+      { "plotNumber": 130, "height": [8], "registeredName": "B. Tonks" },
+      { "plotNumber": 131, "height": [8, 6], "registeredName": "J. Williams" },
+      { "plotNumber": 132, "height": [5, 3], "registeredName": "Labrun" },
+      {
+        "plotNumber": 133,
+        "height": [3, 6],
+        "registeredName": "Graves Unknown"
+      }
+    ]
+  },
+  "row17": {
+    "anchor": {
+      "start": { "plotNumber": 133, "corner": 2 },
+      "displacements": [{ "distance": [7], "bearing": "last_orientation-90" }]
+    },
+    "width": [7],
+    "plots": [
+      { "plotNumber": 134, "height": [7], "registeredName": "Stewart" },
+      { "plotNumber": 135, "height": [7], "registeredName": "Graves Unknown" },
+      { "plotNumber": 136, "height": [6], "registeredName": "Spargo" },
+      { "plotNumber": 137, "height": [7], "registeredName": "Meredith" }
+    ]
+  },
+  "row18": {
+    "anchor": {
+      "start": { "plotNumber": 130, "corner": 1 },
+      "displacements": []
+    },
+    "width": [8],
+    "plots": [
+      { "plotNumber": 138, "height": [8], "registeredName": "A. Tonks" },
+      { "plotNumber": 139, "height": [8, 6], "registeredName": "Ranson" },
+      { "height": [0, 9] },
+      { "plotNumber": 140, "height": [9], "registeredName": "Gamble" },
+      { "plotNumber": 141, "height": [19], "registeredName": "Morrin" },
+      { "plotNumber": 142, "height": [9, 6], "registeredName": "Mathesen" },
+      {
+        "plotNumber": 143,
+        "height": [4, 6],
+        "registeredName": "Graves Unknown"
+      },
+      { "plotNumber": 144, "height": [9], "registeredName": "Hollywood" },
+      {
+        "plotNumber": 145,
+        "height": [9, 6],
+        "registeredName": "Graves Unknown"
+      },
+      { "plotNumber": 146, "height": [10, 6], "registeredName": "Wood" },
+      { "plotNumber": 147, "height": [4], "registeredName": "Peel" },
+      {
+        "plotNumber": 148,
+        "height": [9],
+        "registeredName": "Graves Unknown & Rae"
+      },
+      { "plotNumber": 149, "height": [4], "registeredName": "Wiles" },
+      { "plotNumber": 150, "height": [14, 6], "registeredName": "Eustace" }
+    ]
+  }
+}

@@ -1,8 +1,7 @@
-// import { randomInt } from "crypto";
-// import { useCookies } from "react-cookie";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { IPlot, IPerson } from "../../../types/schema";
 import averageCoordinates from "./utils/averageCoordinates";
+import getAnniversaryPlots from "./utils/getAnniversaryPlots";
 import { getCookie } from "typescript-cookie";
 
 interface InteractiveMapProps {
@@ -31,6 +30,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
   const mapId: string =
     darkMode == "true" ? "c1b071c4df766122" : "22722d672fb630c2";
 
+  // Memorise map instance
   useEffect(() => {
     if (mapRef.current) {
       setMap(
@@ -54,14 +54,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     }
   }, [mapRef, mapId]);
 
-  // Memorise map instance
-  // dark mapId: "22722d672fb630c2"
-  //let mapId = "c1b071c4df766122";
-  //if (global.darkMode) {
-  //mapId = "22722d672fb630c2";
-  //}
   // Initialise overlay
-
   useEffect(() => {
     if (map) {
       new google.maps.GroundOverlay(
@@ -84,21 +77,27 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     const polygons = plots.reduce((polygonMap, plot) => {
       const polygon = new google.maps.Polygon({
         paths: plot.coordinates,
-        strokeColor: "#428BCA",
+        strokeColor: "#428bca",
         strokeOpacity: 0.6,
         strokeWeight: 2,
-        fillColor: "#428BCA",
+        fillColor: "#428bca",
         fillOpacity: 0.2,
       });
       polygon.setMap(map ?? null);
 
       const infowindow = new google.maps.InfoWindow({
         content:
-          "<h2>" + plot.registeredName + " Plot #" + plot.plotNumber + "</h2>"
-          + "<b>" + "<p>Number of People: " + plot.buried.length + "</p>" + "</b>" +
-          plot.buried.map((person: IPerson) => (
-            "<p></p>" + person.fullName
-          ))
+          "<h2>" +
+          plot.registeredName +
+          " Plot #" +
+          plot.plotNumber +
+          "</h2>" +
+          "<b>" +
+          "<p>Number of People: " +
+          plot.buried.length +
+          "</p>" +
+          "</b>" +
+          plot.buried.map((person: IPerson) => "<p></p>" + person.fullName),
       });
 
       const point = averageCoordinates(plot.coordinates);
@@ -118,6 +117,21 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
 
     return () => polygons.forEach((polygon) => polygon.setMap(null));
   }, [map, plots]);
+
+  // Highlight anniversary graveyard plots
+  useEffect(() => {
+    const matchedPlots = getAnniversaryPlots(plots);
+    // console.log(matchedPlots)
+    if (matchedPlots) {
+      matchedPlots.forEach((plot) => {
+        // console.log(plot)
+        if (plot) {
+          const selectedPolygon = polygonsByNumber?.get(plot.plotNumber);
+          selectedPolygon?.setOptions({ fillColor: "#7A49FF" });
+        }
+      });
+    }
+  }, [plots, polygonsByNumber]);
 
   // Initialise click listeners
   useEffect(() => {

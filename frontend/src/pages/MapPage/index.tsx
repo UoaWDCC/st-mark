@@ -13,7 +13,7 @@ import SearchDrawer from "../../components/Map/SearchDrawer";
 import Sidebar from "../../components/Map/Sidebar";
 import NavBar from "../../components/common/NavBar";
 import { sortPeopleByFullName } from "../../utils/sort";
-import { IPerson, IPlot } from "../../types/schema";
+import { IDate, IPerson, IPlot } from "../../types/schema";
 import useGet from "../../hooks/useGet";
 import useFilterPeople from "./hooks/useFilterPeople";
 import usePageTitle from "../../hooks/usePageTitle";
@@ -87,6 +87,8 @@ const MapPage: React.FC = () => {
 
   // search
 
+  const [deathDate, setDeathDate] = useState<IDate>({});
+
   const { data: people, isLoading: isPeopleLoading } =
     useGet<IPerson[]>("/api/person");
 
@@ -126,6 +128,7 @@ const MapPage: React.FC = () => {
               selectedPlot={selectedPlot}
               searchInput={searchInput}
               onChangeSearchInput={setSearchInput}
+              onDeathDateChange={setDeathDate}
               locationKnown={locationKnown}
               locationUnknown={locationUnknown}
               isPeopleLoading={isPeopleLoading}
