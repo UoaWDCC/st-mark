@@ -21,6 +21,7 @@ const ProfileCard: React.FC<ProfileCardProps> = (props: ProfileCardProps) => {
     ? "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)"
     : "";
 
+
   return (
     <Card>
       <CardActionArea onClick={handleClick} data-testid="profile-card-target">
@@ -28,6 +29,7 @@ const ProfileCard: React.FC<ProfileCardProps> = (props: ProfileCardProps) => {
           className={styles.cardContent}
           style={{ background: highlightColor }}
         >
+          <PersonIcon fontSize="large" />
           <div>
             <Typography variant="h6" data-testid="name-area">
               {fullName}
@@ -36,7 +38,7 @@ const ProfileCard: React.FC<ProfileCardProps> = (props: ProfileCardProps) => {
               {`${dayFormatter(dateOfBirth)} - ${dayFormatter(dateOfDeath)}`}
             </Typography>
           </div>
-          <PersonIcon fontSize="large" />
+
         </CardContent>
       </CardActionArea>
     </Card>
