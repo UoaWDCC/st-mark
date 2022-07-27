@@ -54,3 +54,9 @@
   bottom: 1em;
   right: 1em;
 }
+
+.infoButton {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+}

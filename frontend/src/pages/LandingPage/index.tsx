@@ -18,6 +18,15 @@ import { Link } from "react-router-dom";
 import styles from "./LandingPage.module.css";
 import LandingBackdrop from "../../components/LandingBackdrop";
 import useGet from "../../hooks/useGet";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import InfoIcon from "@mui/icons-material/Info";
+import Fab from "@mui/material/Fab";
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
 
 const ModalCard = withStyles({
   root: {
@@ -40,6 +49,16 @@ const LandingPage: React.FC<LandingPageProps> = ({
   const isMobile = useMediaQuery("(max-width:515px)"); // 515px is the point where currently the non-mobile description overflows
 
   useGet("/api/wakeup"); // Prevent backend cold starts
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={styles.container}>
@@ -103,6 +122,41 @@ const LandingPage: React.FC<LandingPageProps> = ({
             </Button>
           </div>
         </ModalCard>
+        </div>
+        <div className={styles.infoButton}>
+        <Fab  size="medium" color="secondary" onClick={handleClickOpen}>
+        <InfoIcon fontSize="large" />
+      </Fab>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Information"}</DialogTitle>
+        <DialogContent>
+        
+        Directory Button
+        <ListItem>
+          <ListItemAvatar>
+            <MenuBookIcon/>
+          </ListItemAvatar>
+          <ListItemText primary="Navigate to a website page that you can see the list of people who are registered in St. Mark's Church Graveyard."  />
+          </ListItem>
+
+        Map Button
+        <ListItem>
+          <ListItemAvatar>
+            <RoomIcon/>
+          </ListItemAvatar>
+          <ListItemText primary="Navigate to a website page that you can see the location of people they were baried." />
+          </ListItem>
+
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="success">Close</Button>
+        </DialogActions>
+      </Dialog>
       </div>
     </div>
   );

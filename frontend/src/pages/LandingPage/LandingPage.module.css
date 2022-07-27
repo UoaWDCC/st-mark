@@ -101,3 +101,9 @@
 .icon {
   padding-right: 15px;
 }
+
+.infoButton {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+}
