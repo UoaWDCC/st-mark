@@ -1,0 +1,9 @@
+# production
+build/
+
+# mongodb-memory-server
+globalConfig.json
+
+# secrets
+google-credentials.json
+env.yaml

@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  height: 64px;
+  padding: 0 1em;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1em;
+}

@@ -1,0 +1,18 @@
+.cardContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+}
+
+@media screen and (max-width: 460px) {
+  .cardContent {
+    width: 340px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .cardContent {
+    width: 290px;
+  }
+}

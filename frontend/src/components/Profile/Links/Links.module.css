@@ -1,0 +1,19 @@
+.linkCard {
+  margin-bottom: 1em;
+}
+
+.link {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link:hover p {
+  text-decoration: underline;
+}
+
+.linkTitle {
+  padding: 1em;
+  overflow: hidden;
+}

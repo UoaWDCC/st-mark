@@ -1,0 +1,49 @@
+.fullPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1em;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+.submissionDescription {
+  padding: 1em;
+  margin: 0 1em;
+}
+
+.formContainer {
+  padding: 1em;
+  margin: 0 1em 1em 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.textField {
+  background-color: white;
+  border-radius: 4px;
+}
+
+.title {
+  width: 6em;
+}
+
+.horizontalGroups {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.captchaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: center;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+}

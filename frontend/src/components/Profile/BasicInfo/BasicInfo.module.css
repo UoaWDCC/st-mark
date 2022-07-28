@@ -1,0 +1,12 @@
+.padded {
+  padding: 1em;
+}
+
+.profilePictureContainer {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.profilePicture {
+  width: 200px;
+}

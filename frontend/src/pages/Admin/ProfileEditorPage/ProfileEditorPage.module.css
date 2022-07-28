@@ -1,0 +1,16 @@
+.pageContainer {
+  min-height: 100vh;
+  background-color: var(--admin-bg-color);
+}
+
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  gap: 1em;
+}
+
+.row {
+  display: flex;
+  gap: 1em;
+}

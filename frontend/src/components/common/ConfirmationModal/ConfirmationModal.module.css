@@ -1,0 +1,30 @@
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+.message {
+  text-align: center;
+  padding: 2em;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  padding: 0 1em;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1em;
+}
+
+.buttonSpace {
+  width: 1em;
+}

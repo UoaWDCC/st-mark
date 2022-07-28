@@ -1,0 +1,34 @@
+.container {
+  padding: 1em 3em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.imagesContainer {
+  display: flex;
+  justify-content: space-around;
+  overflow: auto;
+  max-height: 500px;
+}
+
+.imageList {
+  margin: 0;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.noImagesMessage {
+  align-self: center;
+}
+
+.imageListItemBar {
+  background-color: transparent;
+}
+
+.image {
+  max-height: 200px;
+}

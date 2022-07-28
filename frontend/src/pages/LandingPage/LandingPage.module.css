@@ -1,0 +1,103 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+.pageContent {
+  position: absolute;
+  width: 55%;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 800px) {
+  .pageContent {
+    position: absolute;
+    width: 75%;
+  }
+}
+@media screen and (max-width: 420px) {
+  .pageContent {
+    position: absolute;
+    width: 90%;
+  }
+}
+
+.backToStMarks {
+  position: fixed;
+  top: 3%;
+  left: 3%;
+  cursor: pointer;
+  text-decoration: none;
+}
+@media screen and (max-width: 800px) {
+  .backToStMarks {
+    top: 1.5%;
+  }
+}
+@media screen and (max-width: 420px) {
+  .backToStMarks {
+    top: 1.5%;
+    left: 4%;
+  }
+}
+
+.title {
+  padding-bottom: 30px;
+}
+@media screen and (max-width: 420px) {
+  .title {
+    padding-bottom: 5px;
+  }
+}
+
+.modal {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 15px;
+  padding-bottom: 25px;
+}
+@media screen and (max-width: 420px) {
+  .modal {
+    padding: 10px;
+    padding-bottom: 15px;
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px;
+  padding-top: 15px;
+}
+@media screen and (max-width: 420px) {
+  .buttonWrapper {
+    flex-direction: column;
+  }
+}
+
+.buttonBreak {
+  width: 10px;
+}
+@media screen and (max-width: 420px) {
+  .buttonBreak {
+    height: 10px;
+  }
+}
+
+.button {
+  flex-grow: 1;
+}
+@media screen and (max-width: 420px) {
+  .button {
+    width: 95%;
+  }
+}
+
+.icon {
+  padding-right: 15px;
+}

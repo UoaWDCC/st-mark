@@ -1,0 +1,17 @@
+.pageContainer {
+  background-color: var(--bg-color);
+  min-height: 100vh;
+}
+
+.grid {
+  justify-content: center;
+}
+
+.gridParent {
+  padding: 2em; /* workground for grid negative margin*/
+}
+
+.divider {
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+}

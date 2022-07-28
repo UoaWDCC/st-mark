@@ -1,0 +1,15 @@
+.container {
+  padding: 1em 3em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.textField {
+  background-color: white;
+  border-radius: 4px;
+}
+
+.saveButtonContainer {
+  text-align: end;
+}

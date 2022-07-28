@@ -1,0 +1,12 @@
+.topBarIcons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  padding: 0 1em;
+  pointer-events: none;
+}
+
+.clickable {
+  pointer-events: all;
+}

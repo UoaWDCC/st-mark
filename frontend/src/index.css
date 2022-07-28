@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}

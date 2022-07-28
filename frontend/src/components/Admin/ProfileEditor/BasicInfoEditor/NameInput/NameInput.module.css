@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  gap: 0.25em;
+}
+
+.input {
+  background-color: white;
+  border-radius: 4px;
+}

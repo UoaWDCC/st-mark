@@ -1,0 +1,17 @@
+.loading {
+  text-align: center;
+  height: 50px;
+}
+
+.container {
+  padding: 0 1em;
+}
+
+.noResults {
+  font-style: italic;
+  text-align: center;
+}
+
+.sectionDivider {
+  padding: 1em 0;
+}

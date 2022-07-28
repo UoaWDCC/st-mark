@@ -1,0 +1,75 @@
+.fullPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+.profileContainer {
+  display: flex;
+  gap: 2em;
+  flex-grow: 1;
+  padding: 1em;
+  box-sizing: border-box;
+  align-items: stretch;
+  max-height: calc(100vh - 64px);
+}
+
+.profileColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  max-width: 280px;
+  min-width: 280px;
+}
+
+.profileContentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  flex-grow: 1;
+}
+
+.profileContent {
+  padding: 1em;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.tabAndSubmissionContainer {
+  display: flex;
+  gap: 1em;
+}
+
+.tabNavBar {
+  flex: 1;
+}
+
+.submissionContainer {
+  height: 100%;
+  width: 290px;
+}
+
+@media only screen and (max-width: 1050px) {
+  .submissionContainer {
+    width: initial;
+  }
+}
+
+/* Mobile responsiveness for flex */
+@media only screen and (max-width: 890px) {
+  .submissionContainer {
+    width: 100%;
+  }
+
+  .profileContainer {
+    flex-direction: column;
+    max-height: none;
+  }
+
+  .profileColumn {
+    max-width: none;
+    min-width: unset;
+  }
+}

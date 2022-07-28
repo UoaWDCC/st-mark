@@ -1,0 +1,14 @@
+.content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  padding: 1em 1em 1em 0;
+}
+
+.searchResults {
+  overflow: auto;
+}
