@@ -1,8 +1,0 @@
-.pageContainer {
-  background-color: var(--admin-bg-color);
-  min-height: 100vh;
-}
-
-.content {
-  padding: 1em;
-}

@@ -1,9 +1,0 @@
-.componentPadding {
-  margin: auto;
-  text-align: center;
-}
-
-.fullPageContainer {
-  display: flex;
-  min-height: 90vh;
-}

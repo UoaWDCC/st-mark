@@ -1,4 +1,0 @@
-dispatch:
-  # Send all API requests to backend service.
-  - url: "*/api/*"
-    service: backendY
