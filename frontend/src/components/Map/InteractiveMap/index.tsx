@@ -62,7 +62,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     }
   }, [mapRef, mapId]);
 
-  // Initialise overlay 
+  // Initialise overlay
   useEffect(() => {
     if (map) {
       new google.maps.GroundOverlay(
@@ -129,9 +129,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
             "</p>" +
             "</b>" +
             "<div id='button'></div>" +
-            "<p> </p>" +
-            " l" +
-            "<p> </p>"
+            "<br></br>"
         );
         infowindow.setPosition(point);
         infowindow.open(map);
@@ -160,37 +158,66 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
             fetchPromise.then((response) => {
               const jsonPromise = response.json();
               jsonPromise.then((data) => {
-                const imageUrl = data.images[0].url;
-                infowindow1.setContent(
-                  "<p></p>" +
-                    "<h2>" +
-                    "<b>" +
-                    aLink +
-                    personNames[btnNumber] +
-                    "</a></b></h2>" +
+                if (data.images[0] !== undefined) {
+                  const imageUrl = data.images[0].url;
+                  const personImageUrl: string =
+                    "<img src=" + imageUrl + " width='200' height='100'}>";
+                  infowindow1.setContent(
                     "<p></p>" +
-                    aLink +
-                    `<img src=${
-                      imageUrl !== undefined
-                        ? imageUrl
-                        : "images/default-dp.png"
-                    } width='200' height='100'}></img>` +
-                    "</a>" +
-                    // "<p></p>" + "ID: " + personId[btnNumber] +
+                      "<h2>" +
+                      "<b>" +
+                      aLink +
+                      personNames[btnNumber] +
+                      "</a></b></h2>" +
+                      "<p></p>" +
+                      aLink +
+                      personImageUrl +
+                      "</img>" +
+                      "</a>" +
+                      "<p></p>" +
+                      "Plot: " +
+                      plot.registeredName +
+                      " #" +
+                      plot.plotNumber +
+                      "<p></p>" +
+                      "Date of birth: " +
+                      personDateOfBirths[btnNumber] +
+                      "<p></p>" +
+                      "Date of death: " +
+                      personDateOfDeaths[btnNumber] +
+                      "<p></p>" +
+                      "<button id='back'>&#8592</button>"
+                  );
+                } else {
+                  const personImageUrl =
+                    "<img src='images/default-dp.png' width='200' height='200'}>";
+                  infowindow1.setContent(
                     "<p></p>" +
-                    "Plot: " +
-                    plot.registeredName +
-                    " #" +
-                    plot.plotNumber +
-                    "<p></p>" +
-                    "Date of birth: " +
-                    personDateOfBirths[btnNumber] +
-                    "<p></p>" +
-                    "Date of death: " +
-                    personDateOfDeaths[btnNumber] +
-                    "<p></p>" +
-                    "<button id='back'>&#8592</button>"
-                );
+                      "<h2>" +
+                      "<b>" +
+                      aLink +
+                      personNames[btnNumber] +
+                      "</a></b></h2>" +
+                      "<p></p>" +
+                      aLink +
+                      personImageUrl +
+                      "</img>" +
+                      "</a>" +
+                      "<p></p>" +
+                      "Plot: " +
+                      plot.registeredName +
+                      " #" +
+                      plot.plotNumber +
+                      "<p></p>" +
+                      "Date of birth: " +
+                      personDateOfBirths[btnNumber] +
+                      "<p></p>" +
+                      "Date of death: " +
+                      personDateOfDeaths[btnNumber] +
+                      "<p></p>" +
+                      "<button id='back'>&#8592</button>"
+                  );
+                }
               });
             });
 
