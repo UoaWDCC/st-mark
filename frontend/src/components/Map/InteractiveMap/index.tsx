@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import useGeolocation from "react-hook-geolocation";
 import { IPlot } from "../../../types/schema";
 import averageCoordinates from "./utils/averageCoordinates";
 
@@ -114,6 +115,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
   }, [map, selectedPlot, selectedPlotMarker]);
 
   // Geolocation marker
+  const geoLocation = useGeolocation();
   const geolocationMarker = useMemo(
     () =>
       new google.maps.Marker({
