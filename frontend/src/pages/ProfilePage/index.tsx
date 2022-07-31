@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, useMediaQuery } from "@mui/material";
 import { useParams, Link } from "react-router-dom";
-import NavBar from "../../components/common/NavBar";
+import NavBarDirectory from "../../components/common/NavBarDirectory/indexDirectory";
 import NavigationBar from "../../components/Profile/NavigationBar";
 import useGet from "../../hooks/useGet";
 import { IPersonAll } from "../../types/schema";
@@ -38,7 +38,7 @@ const ProfilePage: React.FC = () => {
 
   return (
     <div className={styles.fullPageContainer}>
-      <NavBar />
+      <NavBarDirectory />
       {person && (
         <div className={styles.profileContainer}>
           <div className={styles.profileColumn}>

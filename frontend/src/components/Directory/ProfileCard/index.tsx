@@ -7,6 +7,7 @@ import { IDate, IPerson } from "../../../types/schema";
 interface ProfileCardProps {
   person: IPerson;
   onClick: React.MouseEventHandler<HTMLElement>;
+  isStyled: boolean;
 }
 
 const dayFormatter = (date: IDate | undefined): string => {
@@ -14,13 +15,19 @@ const dayFormatter = (date: IDate | undefined): string => {
 };
 
 const ProfileCard: React.FC<ProfileCardProps> = (props: ProfileCardProps) => {
-  const { person, onClick: handleClick } = props;
+  const { person, onClick: handleClick, isStyled } = props;
   const { fullName, dateOfBirth, dateOfDeath } = person;
+  const highlightColor = isStyled
+    ? "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)"
+    : "";
 
   return (
     <Card>
       <CardActionArea onClick={handleClick} data-testid="profile-card-target">
-        <CardContent className={styles.cardContent}>
+        <CardContent
+          className={styles.cardContent}
+          style={{ background: highlightColor }}
+        >
           <div>
             <Typography variant="h6" data-testid="name-area">
               {fullName}

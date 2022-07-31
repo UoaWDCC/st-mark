@@ -16,7 +16,8 @@ const config = convict({
   },
   mongo_uri: {
     format: "String",
-    default: "mongodb://localhost:27017/st-marks-graveyard",
+    default:
+      "mongodb+srv://team2022:team2022@cluster0.mww71.mongodb.net/stmarksgraveyard?retryWrites=true&w=majority",
     env: "MONGO_URI",
   },
   google_application_credentials: {
@@ -61,12 +62,14 @@ const config = convict({
   },
   auth0_audience: {
     format: "String",
-    default: "",
+    default:
+      "https://manage.auth0.com/dashboard/au/st-marks-graveyard/applications",
     env: "AUTH0_AUDIENCE",
   },
   auth0_issuer_domain: {
     format: "String",
-    default: "",
+    default:
+      "https://manage.auth0.com/dashboard/au/st-marks-graveyard/applications",
     env: "AUTH0_ISSUER_DOMAIN",
   },
 });

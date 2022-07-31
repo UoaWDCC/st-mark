@@ -3,7 +3,10 @@ import { IPlot, IPerson } from "../../../types/schema";
 import averageCoordinates from "./utils/averageCoordinates";
 import getAnniversaryPlots from "./utils/getAnniversaryPlots";
 import { getCookie } from "typescript-cookie";
+<<<<<<< HEAD
 import { dateToString } from "../../../utils/dates";
+=======
+>>>>>>> main
 
 interface InteractiveMapProps {
   plots: IPlot[];
@@ -29,8 +32,12 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
   // // Memorise map instance
   // // initialise mapId
   const mapId: string =
+<<<<<<< HEAD
     darkMode == "true" ? "9405af4022ebaa6" : "22722d672fb630c2";
   const plotColour: string = darkMode == "true" ? "#428BCA" : "#F0F26B";
+=======
+    darkMode == "true" ? "c1b071c4df766122" : "22722d672fb630c2";
+>>>>>>> main
 
   // Memorise map instance
   useEffect(() => {
@@ -50,15 +57,19 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
           },
           disableDefaultUI: true,
           zoomControl: false,
+<<<<<<< HEAD
           mapTypeControl: true,
           mapTypeControlOptions: {
             mapTypeIds: ["roadmap", "satellite"],
           },
+=======
+>>>>>>> main
           mapId: mapId,
         })
       );
     }
   }, [mapRef, mapId]);
+<<<<<<< HEAD
 
   function handleLocationError(
     browserHasGeolocation: boolean,
@@ -73,6 +84,8 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     );
     infoWindow.open(map);
   }
+=======
+>>>>>>> main
 
   // Initialise overlay
   useEffect(() => {
@@ -136,6 +149,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       });
       polygon.setMap(map ?? null);
 
+<<<<<<< HEAD
       const point = averageCoordinates(plot.coordinates);
 
       const infowindow1 = new google.maps.InfoWindow({
@@ -277,6 +291,29 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         });
       });
 
+=======
+      const infowindow = new google.maps.InfoWindow({
+        content:
+          "<h2>" +
+          plot.registeredName +
+          " Plot #" +
+          plot.plotNumber +
+          "</h2>" +
+          "<b>" +
+          "<p>Number of People: " +
+          plot.buried.length +
+          "</p>" +
+          "</b>" +
+          plot.buried.map((person: IPerson) => "<p></p>" + person.fullName),
+      });
+
+      const point = averageCoordinates(plot.coordinates);
+
+      polygon.addListener("mouseover", () => {
+        infowindow.setPosition(point);
+        infowindow.open(map);
+      });
+>>>>>>> main
       polygon.addListener("mouseout", () => {
         infowindow.close();
       });
@@ -288,6 +325,21 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
 
     return () => polygons.forEach((polygon) => polygon.setMap(null));
   }, [map, plots, plotColour]);
+
+  // Highlight anniversary graveyard plots
+  useEffect(() => {
+    const matchedPlots = getAnniversaryPlots(plots);
+    // console.log(matchedPlots)
+    if (matchedPlots) {
+      matchedPlots.forEach((plot) => {
+        // console.log(plot)
+        if (plot) {
+          const selectedPolygon = polygonsByNumber?.get(plot.plotNumber);
+          selectedPolygon?.setOptions({ fillColor: "#7A49FF" });
+        }
+      });
+    }
+  }, [plots, polygonsByNumber]);
 
   // Highlight anniversary graveyard plots
   useEffect(() => {

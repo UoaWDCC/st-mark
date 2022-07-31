@@ -18,5 +18,8 @@
   "lint-staged": {
     "(backend|frontend)/src/**/*.{ts,tsx,js,jsx}": "eslint --fix --cache --max-warnings=0",
     "*": "prettier --ignore-unknown --write"
+  },
+  "dependencies": {
+    "typescript-cookie": "^1.0.3"
   }
 }
