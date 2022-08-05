@@ -73,50 +73,56 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
                     <DateRangeIcon />
                   </IconButton>
                 </Tooltip>
-                <Popper
-                  id={id}
-                  open={open}
-                  anchorEl={anchorEl}
-                >
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <Calendar
-                      hideYear={true}
-                      value={date}
-                      onChange={
-                        (v: DateObject) => {
-                          setDate(v)
-                          v ?
-                            onDeathDateChange({
-                              month: getMonth(v.toDate()) + 1,
-                              day: getDate(v.toDate())
-                            })
-                            : onDeathDateChange({})
-                          handleClose()
-                        }
-                      }
-                    >
-                      <button
-                        style={{ margin: "5px 0" }}
-                        onClick={() => {
-                          onDeathDateChange({})
-                          handleClose()
-                        }
-                        }
-                      >
-                        Reset
-                      </button>
-                    </Calendar>
 
-                  </ClickAwayListener>
-                </Popper>
               </InputAdornment>
+
             </div>
+
           }
         />
         <Tooltip title="Search">
           <SearchIcon />
         </Tooltip>
+
       </div>
+      <Popper
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        placement={"bottom-start"}
+      >
+        <ClickAwayListener onClickAway={handleClose}>
+          <Calendar
+            hideYear={true}
+            value={date}
+            onChange={
+              (v: DateObject) => {
+                setDate(v)
+                v ?
+                  onDeathDateChange({
+                    month: getMonth(v.toDate()) + 1,
+                    day: getDate(v.toDate())
+                  })
+                  : onDeathDateChange({})
+                handleClose()
+              }
+            }
+          >
+            <button
+              style={{ margin: "5px 0" }}
+              onClick={() => {
+                onDeathDateChange({})
+                handleClose()
+              }
+              }
+            >
+              Reset
+            </button>
+          </Calendar>
+
+        </ClickAwayListener>
+      </Popper>
+
 
     </Paper >
   );
