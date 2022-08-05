@@ -6,6 +6,8 @@ import {
   Button,
   InputAdornment,
   TextField,
+  Popper,
+  ClickAwayListener,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
@@ -19,12 +21,10 @@ import { IDate, IPerson, IPlot } from "../../../types/schema";
 import PersonLink from "../common/PersonLink";
 import SearchResults from "../common/SearchResults";
 
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
-import Popover from "@mui/material/Popover";
+import { getDate, getMonth } from "date-fns";
+import { DateObject, Calendar } from "react-multi-date-picker"
+import type { Value } from "react-multi-date-picker"
 
-import { getDate, getMonth, getYear } from "date-fns";
 
 const useStyles = makeStyles({
   backButton: {
@@ -55,22 +55,28 @@ const Sidebar: React.FC<SidebarProps> = ({
   const classes = useStyles();
   const theme = useTheme();
 
-  const [date, setDate] = React.useState<Date | null>(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | SVGSVGElement>(null);
 
-  const [anchorEl, setAnchorEl] = React.useState<SVGSVGElement | null>(null);
-
-  const handleOpenPopOver = (event: React.MouseEvent<SVGSVGElement>) => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = (event: React.MouseEvent<SVGSVGElement>) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
-  const handleClosePopOver = () => {
+  const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+  const [date, setDate] = React.useState<Value>(new Date());
 
-  date && console.log(date);
+  if (date instanceof DateObject) {
+    console.log(date.toDate());
+
+  } else {
+    console.log("date not exist");
+
+  }
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popper' : undefined;
 
   if (selectedPlot)
     return (
@@ -124,7 +130,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <SearchIcon color="secondary" onClick={handleOpenPopOver} />
+                <SearchIcon color="secondary" onClick={handleClick} />
               </InputAdornment>
             ),
           }}
@@ -133,43 +139,42 @@ const Sidebar: React.FC<SidebarProps> = ({
           inputProps={{ "data-testid": "desktop-search-input" }}
         />
 
-        <Popover
+        <Popper
           id={id}
           open={open}
           anchorEl={anchorEl}
-          onClose={handleClosePopOver}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
         >
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <StaticDatePicker
-              className="date-picker"
-              displayStaticWrapperAs="desktop"
-              openTo="year"
-              // views={['month', 'day']}
-              minDate={new Date(1800, 0)}
+          <ClickAwayListener onClickAway={handleClose}>
+            <Calendar
+              hideYear={true}
               value={date}
-              onChange={(newDateValue: Date | null) => {
-                setDate(newDateValue);
-                newDateValue
-                  ? onDeathDateChange({
-                      year: getYear(newDateValue),
-                      month: getMonth(newDateValue) + 1,
-                      day: getDate(newDateValue),
+              onChange={
+                (v: DateObject) => {
+                  setDate(v)
+                  v ?
+                    onDeathDateChange({
+                      month: getMonth(v.toDate()) + 1,
+                      day: getDate(v.toDate())
                     })
-                  : onDeathDateChange({});
-              }}
-              renderInput={(params) => <TextField {...params} />}
-              closeOnSelect={true}
-            />
-          </LocalizationProvider>
-        </Popover>
+                    : onDeathDateChange({})
+                  handleClose()
+                }
+              }
+            >
+              <button
+                style={{ margin: "5px 0" }}
+                onClick={() => {
+                  onDeathDateChange({})
+                  handleClose()
+                }
+                }
+              >
+                Reset
+              </button>
+            </Calendar>
+
+          </ClickAwayListener>
+        </Popper>
       </div>
 
       <div className={styles.overflow}>
