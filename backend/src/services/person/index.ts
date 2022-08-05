@@ -28,12 +28,13 @@ export const deletePerson = async (
 export const getPeople = async (): Promise<
   Omit<
     IPerson,
-    "displayImage" | "biography" | "images" | "links" | "anecdotes"
+    "biography" | "images" | "links" | "anecdotes"
   >[]
 > => {
   return await Person.find()
     .populate("plot", "-coordinates")
-    .select("-displayImage -biography -images -links -anecdotes")
+    .populate("displayImage", "-_id url")
+    .select("-biography -images -links -anecdotes")
     .lean({ virtuals: true })
     .exec();
 };
