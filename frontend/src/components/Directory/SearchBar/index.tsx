@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, InputBase, Tooltip, InputAdornment } from "@mui/material";
+import { Paper, InputBase, Tooltip, InputAdornment, ClickAwayListener } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 import styles from "./SearchBar.module.css";
 
@@ -11,10 +11,6 @@ import IconButton from "@mui/material/IconButton";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 
 import Popper from '@mui/material/Popper';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-
-
-
 import { DateObject, Calendar } from "react-multi-date-picker"
 import type { Value } from "react-multi-date-picker"
 
@@ -77,8 +73,6 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
                     <DateRangeIcon />
                   </IconButton>
                 </Tooltip>
-
-
                 <Popper
                   id={id}
                   open={open}
