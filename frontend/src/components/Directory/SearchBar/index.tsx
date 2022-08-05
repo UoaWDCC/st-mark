@@ -68,13 +68,16 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
           startAdornment={
             <div>
               <InputAdornment position="start">
-                <IconButton
-                  onClick={handleClick}
-                  sx={{ p: "10px" }}
-                  aria-label="menu"
-                >
-                  <DateRangeIcon />
-                </IconButton>
+                <Tooltip title="Select date">
+                  <IconButton
+                    onClick={handleClick}
+                    sx={{ p: "10px" }}
+                    aria-label="menu"
+                  >
+                    <DateRangeIcon />
+                  </IconButton>
+                </Tooltip>
+
 
                 <Popper
                   id={id}
