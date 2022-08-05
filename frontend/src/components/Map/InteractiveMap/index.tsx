@@ -88,10 +88,9 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       ).setMap(map);
       const infoWindow = new google.maps.InfoWindow();
       const locationButton = document.createElement("button");
-
-      locationButton.textContent = "Click here to pin your location";
+      locationButton.textContent = "Locate";
       locationButton.classList.add("custom-map-control-button");
-      map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+      map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(locationButton);
 
       locationButton.addEventListener("click", () => {
         // Try HTML5 geolocation.
