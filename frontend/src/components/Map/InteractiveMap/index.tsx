@@ -90,6 +90,9 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       const locationButton = document.createElement("button");
       locationButton.textContent = "Locate";
       locationButton.classList.add("custom-map-control-button");
+      locationButton.style.borderRadius = "5%";
+      locationButton.style.backgroundColor = "#48abe0";
+      locationButton.style.color = "white";
       map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(locationButton);
 
       locationButton.addEventListener("click", () => {
