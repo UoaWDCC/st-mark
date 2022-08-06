@@ -111,6 +111,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
             <button
               style={{ margin: "5px 0" }}
               onClick={() => {
+                setDate(new Date())
                 onDeathDateChange({})
                 handleClose()
               }
