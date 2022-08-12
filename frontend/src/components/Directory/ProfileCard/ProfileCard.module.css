@@ -1,8 +1,9 @@
 .cardContent {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   width: 400px;
+  column-gap: 15px;
 }
 
 @media screen and (max-width: 460px) {

@@ -16,7 +16,7 @@ const dayFormatter = (date: IDate | undefined): string => {
 
 const ProfileCard: React.FC<ProfileCardProps> = (props: ProfileCardProps) => {
   const { person, onClick: handleClick, isStyled } = props;
-  const { fullName, dateOfBirth, dateOfDeath } = person;
+  const { fullName, dateOfBirth, dateOfDeath, displayImage } = person;
   const highlightColor = isStyled
     ? "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)"
     : "";
@@ -28,6 +28,13 @@ const ProfileCard: React.FC<ProfileCardProps> = (props: ProfileCardProps) => {
           className={styles.cardContent}
           style={{ background: highlightColor }}
         >
+          {displayImage ?
+            <img
+              src={displayImage?.url}
+              alt="Profile Picture"
+              height="50px"
+            /> : <PersonIcon sx={{ fontSize: 35 }} />
+          }
           <div>
             <Typography variant="h6" data-testid="name-area">
               {fullName}
@@ -36,7 +43,6 @@ const ProfileCard: React.FC<ProfileCardProps> = (props: ProfileCardProps) => {
               {`${dayFormatter(dateOfBirth)} - ${dayFormatter(dateOfDeath)}`}
             </Typography>
           </div>
-          <PersonIcon fontSize="large" />
         </CardContent>
       </CardActionArea>
     </Card>
