@@ -77,6 +77,36 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
 
   // Initialise plots
   useEffect(() => {
+
+    const churchCoords = [
+      { lat: -36.87274, lng: 174.78065 },
+      { lat: -36.87294, lng: 174.78043 },
+      { lat: -36.87305, lng: 174.7806 },
+      { lat: -36.87297, lng: 174.78069 },
+      { lat: -36.87296, lng: 174.78066 },
+      { lat: -36.87283, lng: 174.78079 },
+      { lat: -36.87274, lng: 174.78065 },
+    ]; 
+
+    const churchPlot = new google.maps.Polygon({
+      paths: churchCoords,
+      strokeColor: "#ff8b11",
+      strokeOpacity: 0.6,
+      strokeWeight: 2,
+      fillColor: "#f9cb9c",
+      fillOpacity: 0.2,
+
+    })
+    churchPlot.setMap(map ?? null);
+
+    new google.maps.Marker({
+      position: {lat: -36.87289, lng: 174.78062},
+      map,
+      title: "St Mark's Parish Hall",
+      // icon:  "InteractiveMap/Church.svg",
+      animation: google.maps.Animation.DROP 
+    })
+
     const polygons = plots.reduce((polygonMap, plot) => {
       const polygon = new google.maps.Polygon({
         paths: plot.coordinates,
@@ -304,7 +334,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     []
   );
 
-  useEffect(() => {
+  useEffect(() => {    
     if (showLocation) {
       const watchId = navigator.geolocation.watchPosition((position) => {
         geolocationMarker.setPosition({
