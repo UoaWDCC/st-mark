@@ -4,6 +4,7 @@ import averageCoordinates from "./utils/averageCoordinates";
 import getAnniversaryPlots from "./utils/getAnniversaryPlots";
 import { getCookie } from "typescript-cookie";
 import { dateToString } from "../../../utils/dates";
+import { url } from "inspector";
 
 
 interface InteractiveMapProps {
@@ -97,15 +98,6 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       fillOpacity: 0.2,
 
     })
-    churchPlot.setMap(map ?? null);
-
-    new google.maps.Marker({
-      position: {lat: -36.87289, lng: 174.78062},
-      map,
-      title: "St Mark's Parish Hall",
-      // icon:  "InteractiveMap/Church.svg",
-      animation: google.maps.Animation.DROP 
-    })
 
     const polygons = plots.reduce((polygonMap, plot) => {
       const polygon = new google.maps.Polygon({
@@ -117,6 +109,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         fillOpacity: 0.2,
       });
       polygon.setMap(map ?? null);
+      churchPlot.setMap(map ?? null);
 
       const point = averageCoordinates(plot.coordinates);
 
@@ -159,6 +152,16 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         infowindow.setPosition(point);
         infowindow.open(map);
       });
+
+      new google.maps.Marker({
+        position: {lat: -36.87289, lng: 174.78062},
+        map,
+        title: "St Mark's Parish Hall",
+        // icon: {
+        //   path: "frontend/src/components/Map/InteractiveMap/church-building-icon.png"
+        // },
+        animation: google.maps.Animation.DROP 
+      })
 
       google.maps.event.addListener(infowindow, "domready", () => {
         const parentbtn = document.getElementById("button");
