@@ -31,6 +31,27 @@ export const Links: React.FC<LinksProps> = (props: LinksProps) => {
           Links
         </Typography>
       )}
+      <Card>
+        <Link
+          href={getValidLink("https://www.findagrave.com/")}
+          target="_blank"
+          rel="noreferrer"
+          className={styles.link}
+        >
+          <Typography
+            variant="body1"
+            color="secondary"
+            className={styles.linkTitle}
+          >
+            {"Find a Grave"}
+          </Typography>
+          <IconButton size="large">
+            <ChevronRightIcon
+              htmlColor={theme.palette.primary.contrastText}
+            />
+          </IconButton>
+        </Link>
+      </Card>
       {links.length ? (
         links.map((link, index) => (
           <div key={index} className={styles.linkCard}>
@@ -59,7 +80,6 @@ export const Links: React.FC<LinksProps> = (props: LinksProps) => {
         ))
       ) : (
         <Typography>
-          <i>Sorry, no links available.</i>
         </Typography>
       )}
     </Paper>
