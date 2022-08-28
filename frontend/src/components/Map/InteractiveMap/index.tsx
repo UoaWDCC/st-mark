@@ -6,7 +6,6 @@ import { getCookie } from "typescript-cookie";
 import { dateToString } from "../../../utils/dates";
 import { url } from "inspector";
 
-
 interface InteractiveMapProps {
   plots: IPlot[];
   selectedPlot: IPlot | undefined;
@@ -78,7 +77,6 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
 
   // Initialise plots
   useEffect(() => {
-
     const churchCoords = [
       { lat: -36.87274, lng: 174.78065 },
       { lat: -36.87294, lng: 174.78043 },
@@ -87,7 +85,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       { lat: -36.87296, lng: 174.78066 },
       { lat: -36.87283, lng: 174.78079 },
       { lat: -36.87274, lng: 174.78065 },
-    ]; 
+    ];
 
     const churchPlot = new google.maps.Polygon({
       paths: churchCoords,
@@ -96,8 +94,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       strokeWeight: 2,
       fillColor: "#f9cb9c",
       fillOpacity: 0.2,
-
-    })
+    });
 
     const polygons = plots.reduce((polygonMap, plot) => {
       const polygon = new google.maps.Polygon({
@@ -108,17 +105,36 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         fillColor: plotColour,
         fillOpacity: 0.2,
       });
+      
+      const icon = {
+        url: "https://uxwing.com/wp-content/themes/uxwing/download/festival-culture-religion/church-building-icon.svg", // url
+        scaledSize: new google.maps.Size(25, 25), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(13, 20), // origin
+      };
+
+      const churchMarker = new google.maps.Marker({
+        position: { lat: -36.87289, lng: 174.78062 },
+        icon: icon,
+        map: map,
+        title: "St Mark's Parish Hall",
+        optimized: false,
+        zIndex:99999999,
+        animation: google.maps.Animation.DROP,
+      });
+      
       polygon.setMap(map ?? null);
       churchPlot.setMap(map ?? null);
+      churchMarker.setMap(map ?? null);
 
       const point = averageCoordinates(plot.coordinates);
 
       const infowindow1 = new google.maps.InfoWindow({
-        zIndex: 2,
+        zIndex: 3,
         maxWidth: 250,
       });
       const infowindow = new google.maps.InfoWindow({
-        zIndex: 1,
+        zIndex: 2,
       });
 
       const personId = plot.buried.map((person: IPerson) => person._id);
@@ -153,16 +169,6 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         infowindow.open(map);
       });
 
-      new google.maps.Marker({
-        position: {lat: -36.87289, lng: 174.78062},
-        map,
-        title: "St Mark's Parish Hall",
-        // icon: {
-        //   path: "frontend/src/components/Map/InteractiveMap/church-building-icon.png"
-        // },
-        animation: google.maps.Animation.DROP 
-      })
-
       google.maps.event.addListener(infowindow, "domready", () => {
         const parentbtn = document.getElementById("button");
         for (let i = 0; i < personNames.length; i++) {
@@ -187,66 +193,65 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
               const jsonPromise = response.json();
               jsonPromise.then((data) => {
                 if (data.images[0] !== undefined) {
-                  const imageUrl = data.images[0].url
-                const personImageUrl: string = 
-                "<img src=" + imageUrl + " width='200' height='100'}>";
-                infowindow1.setContent(
-                  "<p></p>" +
-                    "<h2>" +
-                    "<b>" +
-                    aLink +
-                    personNames[btnNumber] +
-                    "</a></b></h2>" +
+                  const imageUrl = data.images[0].url;
+                  const personImageUrl: string =
+                    "<img src=" + imageUrl + " width='200' height='100'}>";
+                  infowindow1.setContent(
                     "<p></p>" +
-                    aLink + 
-                    personImageUrl +
-                    "</img>" +
-                    "</a>" +
-                    "<p></p>" +
-                    "Plot: " +
-                    plot.registeredName +
-                    " #" +
-                    plot.plotNumber +
-                    "<p></p>" +
-                    "Date of birth: " +
-                    personDateOfBirths[btnNumber] +
-                    "<p></p>" +
-                    "Date of death: " +
-                    personDateOfDeaths[btnNumber] +
-                    "<p></p>" +
-                    "<button id='back'>&#8592</button>"
-                );
+                      "<h2>" +
+                      "<b>" +
+                      aLink +
+                      personNames[btnNumber] +
+                      "</a></b></h2>" +
+                      "<p></p>" +
+                      aLink +
+                      personImageUrl +
+                      "</img>" +
+                      "</a>" +
+                      "<p></p>" +
+                      "Plot: " +
+                      plot.registeredName +
+                      " #" +
+                      plot.plotNumber +
+                      "<p></p>" +
+                      "Date of birth: " +
+                      personDateOfBirths[btnNumber] +
+                      "<p></p>" +
+                      "Date of death: " +
+                      personDateOfDeaths[btnNumber] +
+                      "<p></p>" +
+                      "<button id='back'>&#8592</button>"
+                  );
                 } else {
-                const personImageUrl = 
-                "<img src='images/default-dp.png' width='200' height='200'}>";
-                infowindow1.setContent(
-                  "<p></p>" +
-                    "<h2>" +
-                    "<b>" +
-                    aLink +
-                    personNames[btnNumber] +
-                    "</a></b></h2>" +
+                  const personImageUrl =
+                    "<img src='images/default-dp.png' width='200' height='200'}>";
+                  infowindow1.setContent(
                     "<p></p>" +
-                    aLink + 
-                    personImageUrl +
-                    "</img>" +
-                    "</a>" +
-                    "<p></p>" +
-                    "Plot: " +
-                    plot.registeredName +
-                    " #" +
-                    plot.plotNumber +
-                    "<p></p>" +
-                    "Date of birth: " +
-                    personDateOfBirths[btnNumber] +
-                    "<p></p>" +
-                    "Date of death: " +
-                    personDateOfDeaths[btnNumber] +
-                    "<p></p>" +
-                    "<button id='back'>&#8592</button>"
-                );
+                      "<h2>" +
+                      "<b>" +
+                      aLink +
+                      personNames[btnNumber] +
+                      "</a></b></h2>" +
+                      "<p></p>" +
+                      aLink +
+                      personImageUrl +
+                      "</img>" +
+                      "</a>" +
+                      "<p></p>" +
+                      "Plot: " +
+                      plot.registeredName +
+                      " #" +
+                      plot.plotNumber +
+                      "<p></p>" +
+                      "Date of birth: " +
+                      personDateOfBirths[btnNumber] +
+                      "<p></p>" +
+                      "Date of death: " +
+                      personDateOfDeaths[btnNumber] +
+                      "<p></p>" +
+                      "<button id='back'>&#8592</button>"
+                  );
                 }
-                
               });
             });
 
@@ -337,7 +342,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     []
   );
 
-  useEffect(() => {    
+  useEffect(() => {
     if (showLocation) {
       const watchId = navigator.geolocation.watchPosition((position) => {
         geolocationMarker.setPosition({
