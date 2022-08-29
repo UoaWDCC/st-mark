@@ -95,6 +95,41 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       fillColor: "#f9cb9c",
       fillOpacity: 0.2,
     });
+  
+    const pathCoords = [
+      { lat: -36.87254, lng: 174.78053 },
+      { lat: -36.87272, lng: 174.78024 },
+      { lat: -36.87286, lng: 174.78002 },
+      { lat: -36.872873, lng: 174.780039 },
+      { lat: -36.87292, lng: 174.77998 },
+      { lat: -36.87295, lng: 174.77999 },
+      { lat: -36.87296, lng: 174.78003 },
+      { lat: -36.873010, lng: 174.78003 },
+      { lat: -36.873064, lng: 174.78016 },
+      { lat: -36.873042, lng: 174.78034 },
+      { lat: -36.87302, lng: 174.78038 },
+      { lat: -36.87304, lng: 174.78042 },
+      { lat: -36.87303, lng: 174.78044 },
+      { lat: -36.873005, lng: 174.78039 },
+      { lat: -36.87293, lng: 174.78042 },
+      { lat: -36.87288, lng: 174.78036 },
+      { lat: -36.87286, lng: 174.78036 },
+      { lat: -36.872835, lng: 174.780344 },
+      { lat: -36.87282, lng: 174.780344 },
+      { lat: -36.872805, lng: 174.780309 },
+      { lat: -36.87279, lng: 174.780273 },
+      { lat: -36.87276, lng: 174.7802578 },
+      { lat: -36.872555, lng: 174.780555 },
+    ];
+    
+    const pathPlot = new google.maps.Polygon({
+      paths: pathCoords,
+      strokeColor: "#fafbdf",
+      strokeOpacity: 0.6,
+      strokeWeight: 2,
+      fillColor: "#fffff2",
+      fillOpacity: 0.2,
+    });
 
     const polygons = plots.reduce((polygonMap, plot) => {
       const polygon = new google.maps.Polygon({
@@ -104,6 +139,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         strokeWeight: 2,
         fillColor: plotColour,
         fillOpacity: 0.2,
+        zIndex: 9999999
       });
       
       const icon = {
@@ -122,10 +158,11 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         zIndex:99999999,
         animation: google.maps.Animation.DROP,
       });
-      
-      polygon.setMap(map ?? null);
+          
+      pathPlot.setMap(map ?? null);
       churchPlot.setMap(map ?? null);
       churchMarker.setMap(map ?? null);
+      polygon.setMap(map ?? null);
 
       const point = averageCoordinates(plot.coordinates);
 
