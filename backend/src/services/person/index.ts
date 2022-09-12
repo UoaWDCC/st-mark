@@ -26,10 +26,7 @@ export const deletePerson = async (
 };
 
 export const getPeople = async (): Promise<
-  Omit<
-    IPerson,
-    "biography" | "images" | "links" | "anecdotes"
-  >[]
+  Omit<IPerson, "biography" | "images" | "links" | "anecdotes">[]
 > => {
   return await Person.find()
     .populate("plot", "-coordinates")

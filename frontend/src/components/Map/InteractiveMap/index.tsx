@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { IPlot, IPerson, IPersonAll } from "../../../types/schema";
+import { IPlot, IPerson } from "../../../types/schema";
 import averageCoordinates from "./utils/averageCoordinates";
 import getAnniversaryPlots from "./utils/getAnniversaryPlots";
 import { getCookie } from "typescript-cookie";
 import { dateToString } from "../../../utils/dates";
-import useGet from "../../../hooks/useGet";
-import { Images } from "../../../components/Profile/Images";
+//import useGet from "../../../hooks/useGet";
+//import { Images } from "../../../components/Profile/Images";
+//import { url } from "inspector";
 
 interface InteractiveMapProps {
   plots: IPlot[];
@@ -82,6 +83,60 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
 
   // Initialise plots
   useEffect(() => {
+    const churchCoords = [
+      { lat: -36.87274, lng: 174.78065 },
+      { lat: -36.87294, lng: 174.78043 },
+      { lat: -36.87305, lng: 174.7806 },
+      { lat: -36.87297, lng: 174.78069 },
+      { lat: -36.87296, lng: 174.78066 },
+      { lat: -36.87283, lng: 174.78079 },
+      { lat: -36.87274, lng: 174.78065 },
+    ];
+
+    const churchPlot = new google.maps.Polygon({
+      paths: churchCoords,
+      strokeColor: "#ff8b11",
+      strokeOpacity: 0.6,
+      strokeWeight: 2,
+      fillColor: "#f9cb9c",
+      fillOpacity: 0.2,
+    });
+
+    const pathCoords = [
+      { lat: -36.87254, lng: 174.78053 },
+      { lat: -36.87272, lng: 174.78024 },
+      { lat: -36.87286, lng: 174.78002 },
+      { lat: -36.872873, lng: 174.780039 },
+      { lat: -36.87292, lng: 174.77998 },
+      { lat: -36.87295, lng: 174.77999 },
+      { lat: -36.87296, lng: 174.78003 },
+      { lat: -36.87301, lng: 174.78003 },
+      { lat: -36.873064, lng: 174.78016 },
+      { lat: -36.873042, lng: 174.78034 },
+      { lat: -36.87302, lng: 174.78038 },
+      { lat: -36.87304, lng: 174.78042 },
+      { lat: -36.87303, lng: 174.78044 },
+      { lat: -36.873005, lng: 174.78039 },
+      { lat: -36.87293, lng: 174.78042 },
+      { lat: -36.87288, lng: 174.78036 },
+      { lat: -36.87286, lng: 174.78036 },
+      { lat: -36.872835, lng: 174.780344 },
+      { lat: -36.87282, lng: 174.780344 },
+      { lat: -36.872805, lng: 174.780309 },
+      { lat: -36.87279, lng: 174.780273 },
+      { lat: -36.87276, lng: 174.7802578 },
+      { lat: -36.872555, lng: 174.780555 },
+    ];
+
+    const pathPlot = new google.maps.Polygon({
+      paths: pathCoords,
+      strokeColor: "#fafbdf",
+      strokeOpacity: 0.6,
+      strokeWeight: 2,
+      fillColor: "#fffff2",
+      fillOpacity: 0.2,
+    });
+
     const polygons = plots.reduce((polygonMap, plot) => {
       const polygon = new google.maps.Polygon({
         paths: plot.coordinates,
@@ -90,17 +145,39 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         strokeWeight: 2,
         fillColor: plotColour,
         fillOpacity: 0.2,
+        zIndex: 9999999,
       });
+
+      const icon = {
+        url: "https://uxwing.com/wp-content/themes/uxwing/download/festival-culture-religion/church-building-icon.svg", // url
+        scaledSize: new google.maps.Size(25, 25), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(13, 20), // origin
+      };
+
+      const churchMarker = new google.maps.Marker({
+        position: { lat: -36.87289, lng: 174.78062 },
+        icon: icon,
+        map: map,
+        title: "St Mark's Parish Hall",
+        optimized: false,
+        zIndex: 99999999,
+        animation: google.maps.Animation.DROP,
+      });
+
+      pathPlot.setMap(map ?? null);
+      churchPlot.setMap(map ?? null);
+      churchMarker.setMap(map ?? null);
       polygon.setMap(map ?? null);
 
       const point = averageCoordinates(plot.coordinates);
 
       const infowindow1 = new google.maps.InfoWindow({
-        zIndex: 2,
+        zIndex: 3,
         maxWidth: 250,
       });
       const infowindow = new google.maps.InfoWindow({
-        zIndex: 1,
+        zIndex: 2,
       });
 
       const personId = plot.buried.map((person: IPerson) => person._id);
@@ -244,7 +321,22 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     setPolygonsByNumber(polygons);
 
     return () => polygons.forEach((polygon) => polygon.setMap(null));
-  }, [map, plots]);
+  }, [map, plots, plotColour]);
+
+  // Highlight anniversary graveyard plots
+  useEffect(() => {
+    const matchedPlots = getAnniversaryPlots(plots);
+    // console.log(matchedPlots)
+    if (matchedPlots) {
+      matchedPlots.forEach((plot) => {
+        // console.log(plot)
+        if (plot) {
+          const selectedPolygon = polygonsByNumber?.get(plot.plotNumber);
+          selectedPolygon?.setOptions({ fillColor: "#7A49FF" });
+        }
+      });
+    }
+  }, [plots, polygonsByNumber]);
 
   // Highlight anniversary graveyard plots
   useEffect(() => {

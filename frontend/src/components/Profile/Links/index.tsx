@@ -46,9 +46,7 @@ export const Links: React.FC<LinksProps> = (props: LinksProps) => {
             {"Find a Grave"}
           </Typography>
           <IconButton size="large">
-            <ChevronRightIcon
-              htmlColor={theme.palette.primary.contrastText}
-            />
+            <ChevronRightIcon htmlColor={theme.palette.primary.contrastText} />
           </IconButton>
         </Link>
       </Card>
@@ -79,8 +77,7 @@ export const Links: React.FC<LinksProps> = (props: LinksProps) => {
           </div>
         ))
       ) : (
-        <Typography>
-        </Typography>
+        <Typography></Typography>
       )}
     </Paper>
   );

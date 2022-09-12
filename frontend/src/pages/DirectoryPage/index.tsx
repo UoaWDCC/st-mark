@@ -136,7 +136,7 @@ const DirectoryPage: React.FC = () => {
               <ListItemAvatar>
                 <RoomIcon />
               </ListItemAvatar>
-              <ListItemText primary="Navigate to a website page that you can see the location of people they were baried." />
+              <ListItemText primary="Navigate to a website page that you can see the location of people they were buried." />
             </ListItem>
             Search Button
             <ListItem>

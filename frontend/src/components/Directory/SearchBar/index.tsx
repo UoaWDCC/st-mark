@@ -1,5 +1,11 @@
 import React from "react";
-import { Paper, InputBase, Tooltip, InputAdornment, ClickAwayListener } from "@mui/material";
+import {
+  Paper,
+  InputBase,
+  Tooltip,
+  InputAdornment,
+  ClickAwayListener,
+} from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 import styles from "./SearchBar.module.css";
 
@@ -10,11 +16,9 @@ import { getDate, getMonth } from "date-fns";
 import IconButton from "@mui/material/IconButton";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 
-import Popper from '@mui/material/Popper';
-import { DateObject, Calendar } from "react-multi-date-picker"
-import type { Value } from "react-multi-date-picker"
-
-
+import Popper from "@mui/material/Popper";
+import { DateObject, Calendar } from "react-multi-date-picker";
+import type { Value } from "react-multi-date-picker";
 
 interface SearchBarProps {
   onSearchTermChange: (newValue: string) => void;
@@ -22,10 +26,9 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
-
-
-
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLButtonElement>(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLButtonElement>(
+    null
+  );
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -36,7 +39,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popper' : undefined;
+  const id = open ? "simple-popper" : undefined;
 
   const { onSearchTermChange, onDeathDateChange } = props;
 
@@ -44,14 +47,11 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
 
   if (date instanceof DateObject) {
     console.log(date.toDate());
-
   } else {
     console.log("date not exist");
-
   }
 
   return (
-
     <Paper className={styles.container}>
       <div className={styles.searchBar}>
         <InputBase
@@ -73,17 +73,13 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
                     <DateRangeIcon />
                   </IconButton>
                 </Tooltip>
-
               </InputAdornment>
-
             </div>
-
           }
         />
         <Tooltip title="Search">
           <SearchIcon />
         </Tooltip>
-
       </div>
       <Popper
         id={id}
@@ -95,37 +91,31 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
           <Calendar
             hideYear={true}
             value={date}
-            onChange={
-              (v: DateObject) => {
-                setDate(v)
-                v ?
-                  onDeathDateChange({
+            onChange={(v: DateObject) => {
+              setDate(v);
+              v
+                ? onDeathDateChange({
                     month: getMonth(v.toDate()) + 1,
-                    day: getDate(v.toDate())
+                    day: getDate(v.toDate()),
                   })
-                  : onDeathDateChange({})
-                handleClose()
-              }
-            }
+                : onDeathDateChange({});
+              handleClose();
+            }}
           >
             <button
               style={{ margin: "5px 0" }}
               onClick={() => {
-                setDate(new Date())
-                onDeathDateChange({})
-                handleClose()
-              }
-              }
+                setDate(new Date());
+                onDeathDateChange({});
+                handleClose();
+              }}
             >
               Reset
             </button>
           </Calendar>
-
         </ClickAwayListener>
       </Popper>
-
-
-    </Paper >
+    </Paper>
   );
 };
 

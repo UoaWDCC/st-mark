@@ -10,7 +10,14 @@ const getAnniversaryPlots = (plots: IPlot[]): IPlot[] => {
     const matchedPeople = filterWithinWeek(people, today);
     return matchedPeople.length !== 0;
   });
+
   return anniversaryPlots;
+
+  // 	// const today = new Date();
+  // 	// const todayIDate = {
+  // 	// 	month: today.getMonth() + 1,
+  // 	// 	day: today.getDate()
+  // 	// }
 };
 
 export default getAnniversaryPlots;

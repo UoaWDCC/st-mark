@@ -22,9 +22,8 @@ import PersonLink from "../common/PersonLink";
 import SearchResults from "../common/SearchResults";
 
 import { getDate, getMonth } from "date-fns";
-import { DateObject, Calendar } from "react-multi-date-picker"
-import type { Value } from "react-multi-date-picker"
-
+import { DateObject, Calendar } from "react-multi-date-picker";
+import type { Value } from "react-multi-date-picker";
 
 const useStyles = makeStyles({
   backButton: {
@@ -69,14 +68,12 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   if (date instanceof DateObject) {
     console.log(date.toDate());
-
   } else {
     console.log("date not exist");
-
   }
 
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popper' : undefined;
+  const id = open ? "simple-popper" : undefined;
 
   if (selectedPlot)
     return (
@@ -139,40 +136,32 @@ const Sidebar: React.FC<SidebarProps> = ({
           inputProps={{ "data-testid": "desktop-search-input" }}
         />
 
-        <Popper
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-        >
+        <Popper id={id} open={open} anchorEl={anchorEl}>
           <ClickAwayListener onClickAway={handleClose}>
             <Calendar
               hideYear={true}
               value={date}
-              onChange={
-                (v: DateObject) => {
-                  setDate(v)
-                  v ?
-                    onDeathDateChange({
+              onChange={(v: DateObject) => {
+                setDate(v);
+                v
+                  ? onDeathDateChange({
                       month: getMonth(v.toDate()) + 1,
-                      day: getDate(v.toDate())
+                      day: getDate(v.toDate()),
                     })
-                    : onDeathDateChange({})
-                  handleClose()
-                }
-              }
+                  : onDeathDateChange({});
+                handleClose();
+              }}
             >
               <button
                 style={{ margin: "5px 0" }}
                 onClick={() => {
-                  onDeathDateChange({})
-                  handleClose()
-                }
-                }
+                  onDeathDateChange({});
+                  handleClose();
+                }}
               >
                 Reset
               </button>
             </Calendar>
-
           </ClickAwayListener>
         </Popper>
       </div>

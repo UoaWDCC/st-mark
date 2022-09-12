@@ -101,7 +101,7 @@ const MapPage: React.FC = () => {
 
   // search
 
-  const [deathDate, setDeathDate] = useState<IDate>({});
+  const [, setDeathDate] = useState<IDate>({});
 
   const { data: people, isLoading: isPeopleLoading } =
     useGet<IPerson[]>("/api/person");
