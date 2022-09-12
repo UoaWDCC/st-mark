@@ -32,7 +32,7 @@ export const filterWithinWeek = (people: IPerson[], date: Date): IPerson[] =>
         date,
         new Date(
           date.getFullYear(),
-          person.dateOfDeath?.month,
+          person.dateOfDeath?.month - 1,
           person.dateOfDeath?.day
         ),
         { weekStartsOn: 1 }

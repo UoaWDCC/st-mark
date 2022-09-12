@@ -16,7 +16,7 @@ import SearchDrawer from "../../components/Map/SearchDrawer";
 import Sidebar from "../../components/Map/Sidebar";
 import NavBar from "../../components/common/NavBar";
 import { sortPeopleByFullName } from "../../utils/sort";
-import { IPerson, IPlot } from "../../types/schema";
+import { IDate, IPerson, IPlot } from "../../types/schema";
 import useGet from "../../hooks/useGet";
 import useFilterPeople from "./hooks/useFilterPeople";
 import usePageTitle from "../../hooks/usePageTitle";
@@ -26,9 +26,9 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import InfoIcon from "@mui/icons-material/Info";
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemText from "@mui/material/ListItemText";
 import Switch from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
 
@@ -100,6 +100,8 @@ const MapPage: React.FC = () => {
   usePageTitle(selectedPlot ? `${selectedPlot.registeredName} Plot` : "Map");
 
   // search
+
+  const [, setDeathDate] = useState<IDate>({});
 
   const { data: people, isLoading: isPeopleLoading } =
     useGet<IPerson[]>("/api/person");
@@ -198,6 +200,7 @@ const MapPage: React.FC = () => {
               selectedPlot={selectedPlot}
               searchInput={searchInput}
               onChangeSearchInput={setSearchInput}
+              onDeathDateChange={setDeathDate}
               locationKnown={locationKnown}
               locationUnknown={locationUnknown}
               isPeopleLoading={isPeopleLoading}
@@ -249,67 +252,61 @@ const MapPage: React.FC = () => {
             }
           />
         </>
-      )}
+      )}{" "}
       <div className={styles.infoButton}>
-      <Fab  size="medium" color="secondary" onClick={handleClickOpen}>
-        <InfoIcon fontSize="large" />
-      </Fab>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"Navigation"} </DialogTitle>
-        <DialogContent>
-        
-        Dark Mode Button
-          <ListItem>
-          <ListItemAvatar> 
-            <MaterialUISwitch
-              checked={true}
-            /> 
-          </ListItemAvatar>
-          <ListItemText primary="Dark theme map will be displayed." />
-          </ListItem>
-
-        Directory Button
-        <ListItem>
-          <ListItemAvatar>
-            <MenuBook/>
-          </ListItemAvatar>
-          <ListItemText primary="A website page that you can see a list of people who are registered in St. Mark's Church Graveyard." />
-          </ListItem>
-
-          Home Button
-          <ListItem>
-          <ListItemAvatar>
-            <Home/>
-          </ListItemAvatar>
-          <ListItemText primary="A website page which introduce St. Mark's Church Graveyard." />
-          </ListItem>
-          
-          Search Button
-          <ListItem>
-          <ListItemAvatar>
-              <SearchIcon/>
-          </ListItemAvatar>
-          <ListItemText primary="You may search people by their name." />
-          </ListItem>
-
-          Map Button
-        <ListItem>
-          <ListItemAvatar>
-            <RoomIcon/>
-          </ListItemAvatar>
-          <ListItemText primary="Show you the lcoation where the person is buried." />
-          </ListItem>
-
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="success">Close</Button>
-        </DialogActions>
-      </Dialog>
+        <Fab size="medium" color="secondary" onClick={handleClickOpen}>
+          <InfoIcon fontSize="large" />
+        </Fab>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Navigation"} </DialogTitle>
+          <DialogContent>
+            Dark Mode Button
+            <ListItem>
+              <ListItemAvatar>
+                <MaterialUISwitch checked={true} />
+              </ListItemAvatar>
+              <ListItemText primary="Dark theme map will be displayed." />
+            </ListItem>
+            Directory Button
+            <ListItem>
+              <ListItemAvatar>
+                <MenuBook />
+              </ListItemAvatar>
+              <ListItemText primary="A website page that you can see a list of people who are registered in St. Mark's Church Graveyard." />
+            </ListItem>
+            Home Button
+            <ListItem>
+              <ListItemAvatar>
+                <Home />
+              </ListItemAvatar>
+              <ListItemText primary="A website page which introduce St. Mark's Church Graveyard." />
+            </ListItem>
+            Search Button
+            <ListItem>
+              <ListItemAvatar>
+                <SearchIcon />
+              </ListItemAvatar>
+              <ListItemText primary="You may search people by their name." />
+            </ListItem>
+            Map Button
+            <ListItem>
+              <ListItemAvatar>
+                <RoomIcon />
+              </ListItemAvatar>
+              <ListItemText primary="Show you the lcoation where the person is buried." />
+            </ListItem>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="success">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </div>
   );

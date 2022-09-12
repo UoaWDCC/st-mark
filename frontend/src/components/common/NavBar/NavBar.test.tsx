@@ -11,12 +11,12 @@ describe("NavBar", () => {
     expect(history.location.pathname).toBe("/");
   });
 
-  // it("Routes to '/map' when the map button is clicked", () => {
-  //   const { history } = renderWithRouter(<NavBar />);
+  it("Routes to '/map' when the map button is clicked", () => {
+    const { history } = renderWithRouter(<NavBar />);
 
-  //   fireEvent.click(screen.getByTestId("map-button"));
-  //   expect(history.location.pathname).toBe("/map");
-  // });
+    fireEvent.click(screen.getByTestId("map-button"));
+    expect(history.location.pathname).toBe("/map");
+  });
 
   it("Routes to '/directory' when the directory button is clicked", () => {
     const { history } = renderWithRouter(<NavBar />);

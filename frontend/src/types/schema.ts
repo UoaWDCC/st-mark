@@ -46,10 +46,10 @@ export interface IPerson {
   dateOfBirth?: IDate;
   dateOfDeath?: IDate;
   plot?: Omit<IPlot, "coordinates">;
+  displayImage?: Omit<IImage, "_id">;
 }
 
 export interface IPersonAll extends IPerson {
-  displayImage?: Omit<IImage, "_id">;
   biography?: string;
   images: IImage[];
   links: ILink[];

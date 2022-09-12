@@ -9,7 +9,7 @@ import {
   FormControl,
   FormHelperText,
 } from "@mui/material";
-import NavBar from "../../components/common/NavBar";
+import NavBarDirectory from "../../components/common/NavBarDirectory/indexDirectory";
 import styles from "./SubmissionPage.module.css";
 import Captcha from "../../auth/Captcha";
 import { useHistory, useParams } from "react-router-dom";
@@ -99,7 +99,7 @@ const SubmissionPage: React.FC = () => {
 
   return (
     <div className={styles.fullPageContainer}>
-      <NavBar />
+      <NavBarDirectory />
       {person && (
         <>
           <Paper

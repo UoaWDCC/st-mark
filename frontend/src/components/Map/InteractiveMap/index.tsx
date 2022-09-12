@@ -4,7 +4,9 @@ import averageCoordinates from "./utils/averageCoordinates";
 import getAnniversaryPlots from "./utils/getAnniversaryPlots";
 import { getCookie } from "typescript-cookie";
 import { dateToString } from "../../../utils/dates";
-import { url } from "inspector";
+//import useGet from "../../../hooks/useGet";
+//import { Images } from "../../../components/Profile/Images";
+//import { url } from "inspector";
 
 interface InteractiveMapProps {
   plots: IPlot[];
@@ -51,6 +53,10 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
           },
           disableDefaultUI: true,
           zoomControl: false,
+          mapTypeControl: true,
+          mapTypeControlOptions: {
+            mapTypeIds: ["roadmap", "satellite"],
+          },
           mapId: mapId,
         })
       );
@@ -95,7 +101,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       fillColor: "#f9cb9c",
       fillOpacity: 0.2,
     });
-  
+
     const pathCoords = [
       { lat: -36.87254, lng: 174.78053 },
       { lat: -36.87272, lng: 174.78024 },
@@ -104,7 +110,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       { lat: -36.87292, lng: 174.77998 },
       { lat: -36.87295, lng: 174.77999 },
       { lat: -36.87296, lng: 174.78003 },
-      { lat: -36.873010, lng: 174.78003 },
+      { lat: -36.87301, lng: 174.78003 },
       { lat: -36.873064, lng: 174.78016 },
       { lat: -36.873042, lng: 174.78034 },
       { lat: -36.87302, lng: 174.78038 },
@@ -121,7 +127,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       { lat: -36.87276, lng: 174.7802578 },
       { lat: -36.872555, lng: 174.780555 },
     ];
-    
+
     const pathPlot = new google.maps.Polygon({
       paths: pathCoords,
       strokeColor: "#fafbdf",
@@ -139,9 +145,9 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         strokeWeight: 2,
         fillColor: plotColour,
         fillOpacity: 0.2,
-        zIndex: 9999999
+        zIndex: 9999999,
       });
-      
+
       const icon = {
         url: "https://uxwing.com/wp-content/themes/uxwing/download/festival-culture-religion/church-building-icon.svg", // url
         scaledSize: new google.maps.Size(25, 25), // scaled size
@@ -155,10 +161,10 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         map: map,
         title: "St Mark's Parish Hall",
         optimized: false,
-        zIndex:99999999,
+        zIndex: 99999999,
         animation: google.maps.Animation.DROP,
       });
-          
+
       pathPlot.setMap(map ?? null);
       churchPlot.setMap(map ?? null);
       churchMarker.setMap(map ?? null);
@@ -316,6 +322,21 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
 
     return () => polygons.forEach((polygon) => polygon.setMap(null));
   }, [map, plots, plotColour]);
+
+  // Highlight anniversary graveyard plots
+  useEffect(() => {
+    const matchedPlots = getAnniversaryPlots(plots);
+    // console.log(matchedPlots)
+    if (matchedPlots) {
+      matchedPlots.forEach((plot) => {
+        // console.log(plot)
+        if (plot) {
+          const selectedPolygon = polygonsByNumber?.get(plot.plotNumber);
+          selectedPolygon?.setOptions({ fillColor: "#7A49FF" });
+        }
+      });
+    }
+  }, [plots, polygonsByNumber]);
 
   // Highlight anniversary graveyard plots
   useEffect(() => {

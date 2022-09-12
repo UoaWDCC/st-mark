@@ -13,15 +13,6 @@ describe("LandingPage", () => {
     expect(screen.getByText("haw")).toBeTruthy();
   });
 
-  it("Routes to '/map' when the map button is clicked", () => {
-    const { history } = renderWithRouter(
-      <LandingPage title="yee" description="haw" mobileDescription="haw" />
-    );
-
-    fireEvent.click(screen.getByTestId("map-button"));
-    expect(history.location.pathname).toBe("/map");
-  });
-
   it("Routes to '/directory' when the directory button is clicked", () => {
     const { history } = renderWithRouter(
       <LandingPage title="yee" description="haw" mobileDescription="haw" />

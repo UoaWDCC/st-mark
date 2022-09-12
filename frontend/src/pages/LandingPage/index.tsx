@@ -24,9 +24,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import InfoIcon from "@mui/icons-material/Info";
 import Fab from "@mui/material/Fab";
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemText from "@mui/material/ListItemText";
 
 const ModalCard = withStyles({
   root: {
@@ -122,41 +122,40 @@ const LandingPage: React.FC<LandingPageProps> = ({
             </Button>
           </div>
         </ModalCard>
-        </div>
-        <div className={styles.infoButton}>
-        <Fab  size="medium" color="secondary" onClick={handleClickOpen}>
-        <InfoIcon fontSize="large" />
-      </Fab>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"Information"}</DialogTitle>
-        <DialogContent>
-        
-        Directory Button
-        <ListItem>
-          <ListItemAvatar>
-            <MenuBookIcon/>
-          </ListItemAvatar>
-          <ListItemText primary="Navigate to a website page that you can see the list of people who are registered in St. Mark's Church Graveyard."  />
-          </ListItem>
-
-        Map Button
-        <ListItem>
-          <ListItemAvatar>
-            <RoomIcon/>
-          </ListItemAvatar>
-          <ListItemText primary="Navigate to a website page that you can see the location of people they were baried." />
-          </ListItem>
-
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="success">Close</Button>
-        </DialogActions>
-      </Dialog>
+      </div>
+      <div className={styles.infoButton}>
+        <Fab size="medium" color="secondary" onClick={handleClickOpen}>
+          <InfoIcon fontSize="large" />
+        </Fab>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Information"}</DialogTitle>
+          <DialogContent>
+            Directory Button
+            <ListItem>
+              <ListItemAvatar>
+                <MenuBookIcon />
+              </ListItemAvatar>
+              <ListItemText primary="Navigate to a website page to see the list of people who are registered in St. Mark's Church Graveyard." />
+            </ListItem>
+            Map Button
+            <ListItem>
+              <ListItemAvatar>
+                <RoomIcon />
+              </ListItemAvatar>
+              <ListItemText primary="Navigate to a website page to see the location of where people they were buried." />
+            </ListItem>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="success">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </div>
   );

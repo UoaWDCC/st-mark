@@ -35,6 +35,12 @@ let theme = createTheme({
       paper: "rgba(255,255,255,0.85)",
     },
   },
+  typography: {
+    fontFamily: "'Playfair Display', Times, serif",
+    button: {
+      fontFamily: "Arial, Helvetica, sans-serif",
+    },
+  },
 });
 theme = responsiveFontSizes(theme);
 
