@@ -28,13 +28,11 @@ const ProfileCard: React.FC<ProfileCardProps> = (props: ProfileCardProps) => {
           className={styles.cardContent}
           style={{ background: highlightColor }}
         >
-          {displayImage ?
-            <img
-              src={displayImage?.url}
-              alt="Profile Picture"
-              height="50px"
-            /> : <PersonIcon sx={{ fontSize: 35 }} />
-          }
+          {displayImage ? (
+            <img src={displayImage?.url} alt="Profile Picture" height="50px" />
+          ) : (
+            <PersonIcon sx={{ fontSize: 35 }} />
+          )}
           <div>
             <Typography variant="h6" data-testid="name-area">
               {fullName}

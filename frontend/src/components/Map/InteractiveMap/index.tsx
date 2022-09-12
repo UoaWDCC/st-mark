@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { IPlot, IPerson, IPersonAll } from "../../../types/schema";
+import { IPlot, IPerson } from "../../../types/schema";
 import averageCoordinates from "./utils/averageCoordinates";
 import getAnniversaryPlots from "./utils/getAnniversaryPlots";
 import { getCookie } from "typescript-cookie";
 import { dateToString } from "../../../utils/dates";
-import useGet from "../../../hooks/useGet";
-import { Images } from "../../../components/Profile/Images";
+//import useGet from "../../../hooks/useGet";
+//import { Images } from "../../../components/Profile/Images";
 
 interface InteractiveMapProps {
   plots: IPlot[];
@@ -244,7 +244,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     setPolygonsByNumber(polygons);
 
     return () => polygons.forEach((polygon) => polygon.setMap(null));
-  }, [map, plots]);
+  }, [map, plots, plotColour]);
 
   // Highlight anniversary graveyard plots
   useEffect(() => {
