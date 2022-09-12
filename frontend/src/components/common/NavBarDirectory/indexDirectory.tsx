@@ -13,7 +13,9 @@ interface NavBarDirectoryProps {
   contrast?: boolean;
 }
 
-const NavBarDirectory: React.FC<NavBarDirectoryProps> = ({ contrast = false }: NavBarDirectoryProps) => {
+const NavBarDirectory: React.FC<NavBarDirectoryProps> = ({
+  contrast = false,
+}: NavBarDirectoryProps) => {
   const theme = useTheme();
   const color = contrast
     ? theme.palette.primary.contrastText
