@@ -140,14 +140,14 @@ const LandingPage: React.FC<LandingPageProps> = ({
               <ListItemAvatar>
                 <MenuBookIcon />
               </ListItemAvatar>
-              <ListItemText primary="Navigate to a website page that you can see the list of people who are registered in St. Mark's Church Graveyard." />
+              <ListItemText primary="Navigate to a website page to see the list of people who are registered in St. Mark's Church Graveyard." />
             </ListItem>
             Map Button
             <ListItem>
               <ListItemAvatar>
                 <RoomIcon />
               </ListItemAvatar>
-              <ListItemText primary="Navigate to a website page that you can see the location of people they were baried." />
+              <ListItemText primary="Navigate to a website page to see the location of where people they were buried." />
             </ListItem>
           </DialogContent>
           <DialogActions>
