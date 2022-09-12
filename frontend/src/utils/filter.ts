@@ -28,15 +28,6 @@ export const filterPeopleByDeathDate = (
 export const filterWithinWeek = (people: IPerson[], date: Date): IPerson[] =>
   people.filter((person) => {
     if (person.dateOfDeath?.month && person.dateOfDeath.day) {
-      console.log("filtering date: " + date);
-      console.log(
-        "person date: " +
-          new Date(
-            date.getFullYear(),
-            person.dateOfDeath?.month - 1,
-            person.dateOfDeath?.day
-          )
-      );
       return isSameWeek(
         date,
         new Date(
