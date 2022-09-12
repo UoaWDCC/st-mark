@@ -7,7 +7,10 @@ describe("SearchBar", () => {
 
   it("Calls 'onSearchTermChange' when something is searched", () => {
     render(
-      <SearchBar onSearchTermChange={mockCallback} className={"RANDOM"} />
+      <SearchBar
+        onSearchTermChange={mockCallback}
+        onDeathDateChange={mockCallback}
+      />
     );
 
     const elem = screen.getByLabelText("search");

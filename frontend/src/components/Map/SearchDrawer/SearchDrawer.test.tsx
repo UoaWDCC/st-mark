@@ -15,6 +15,7 @@ describe("SearchDrawer", () => {
         onChangeSearchInput={handleChangeSearchInput}
         locationKnown={[]}
         locationUnknown={[]}
+        isPeopleLoading={true}
         onSelectLocationKnownSearchResult={jest.fn()}
       />
     );
@@ -37,6 +38,7 @@ describe("SearchDrawer", () => {
         onChangeSearchInput={handleChangeSearchInput}
         locationKnown={[]}
         locationUnknown={[]}
+        isPeopleLoading={true}
         onSelectLocationKnownSearchResult={jest.fn()}
       />
     );
