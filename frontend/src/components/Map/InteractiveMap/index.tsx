@@ -88,12 +88,17 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       ).setMap(map);
       const infoWindow = new google.maps.InfoWindow();
       const locationButton = document.createElement("button");
-      locationButton.textContent = "Locate";
+      locationButton.innerHTML = "&#10148";
       locationButton.classList.add("custom-map-control-button");
-      locationButton.style.borderRadius = "5%";
-      locationButton.style.backgroundColor = "#48abe0";
-      locationButton.style.color = "white";
+      locationButton.style.borderRadius = "100%";
+      // locationButton.style.color = "#48abe0";
+      // locationButton.style.backgroundColor = "white";
+      locationButton.style.margin = "1%";
+      locationButton.style.padding = "10px";
       map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(locationButton);
+      locationButton.style.position = "absolute";
+      locationButton.style.bottom = "0px";
+      locationButton.style.right = "0px";
 
       locationButton.addEventListener("click", () => {
         // Try HTML5 geolocation.
