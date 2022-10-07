@@ -138,7 +138,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     });
 
     const polygons = plots.reduce((polygonMap, plot) => {
-      const polygon = new google.maps.Polygon({
+      const polygon: google.maps.Polygon = new google.maps.Polygon({
         paths: plot.coordinates,
         strokeColor: plotColour,
         strokeOpacity: 0.6,
@@ -227,7 +227,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
           if (e.target !== null) {
             const btn = e.target as Element;
             const btnNumber = Number(btn.id);
-            const profileLink: string = "'profile/" + personId[btnNumber] + "'";
+            const profileLink: string = "'/profile/" + personId[btnNumber] + "'";
             const aLink: string = "<a href=" + profileLink + ">";
 
             const fetchPromise = fetch(`/api/person/${personId[btnNumber]}`);
