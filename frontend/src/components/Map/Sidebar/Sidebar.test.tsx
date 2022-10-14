@@ -52,8 +52,10 @@ describe("Sidebar", () => {
           selectedPlot={undefined}
           searchInput=""
           onChangeSearchInput={jest.fn()}
+          onDeathDateChange={jest.fn()}
           locationKnown={locationKnown}
           locationUnknown={locationUnknown}
+          isPeopleLoading={true}
         />
       );
 
@@ -66,8 +68,10 @@ describe("Sidebar", () => {
           selectedPlot={undefined}
           searchInput=""
           onChangeSearchInput={jest.fn()}
+          onDeathDateChange={jest.fn()}
           locationKnown={locationKnown}
           locationUnknown={locationUnknown}
+          isPeopleLoading={true}
         />
       );
 
@@ -83,8 +87,10 @@ describe("Sidebar", () => {
           selectedPlot={undefined}
           searchInput=""
           onChangeSearchInput={handleChangeSearchInput}
+          onDeathDateChange={jest.fn()}
           locationKnown={locationKnown}
           locationUnknown={locationUnknown}
+          isPeopleLoading={true}
         />
       );
 
@@ -102,8 +108,10 @@ describe("Sidebar", () => {
           selectedPlot={mockPlot}
           searchInput=""
           onChangeSearchInput={jest.fn()}
+          onDeathDateChange={jest.fn()}
           locationKnown={locationKnown}
           locationUnknown={locationUnknown}
+          isPeopleLoading={true}
         />
       );
 
@@ -116,8 +124,10 @@ describe("Sidebar", () => {
           selectedPlot={mockPlot}
           searchInput=""
           onChangeSearchInput={jest.fn()}
+          onDeathDateChange={jest.fn()}
           locationKnown={locationKnown}
           locationUnknown={locationUnknown}
+          isPeopleLoading={true}
         />
       );
 
@@ -130,8 +140,10 @@ describe("Sidebar", () => {
           selectedPlot={mockPlot}
           searchInput=""
           onChangeSearchInput={jest.fn()}
+          onDeathDateChange={jest.fn()}
           locationKnown={locationKnown}
           locationUnknown={locationUnknown}
+          isPeopleLoading={true}
         />
       );
 
@@ -146,8 +158,10 @@ describe("Sidebar", () => {
           selectedPlot={mockPlot}
           searchInput=""
           onChangeSearchInput={jest.fn()}
+          onDeathDateChange={jest.fn()}
           locationKnown={locationKnown}
           locationUnknown={locationUnknown}
+          isPeopleLoading={true}
         />
       );
 

@@ -39,7 +39,7 @@
     "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
     "react-google-recaptcha": "^2.1.0",
-    "react-hook-geolocation": "^1.0.11",
+    "react-multi-date-picker": "^3.3.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "typescript-cookie": "^1.0.3",

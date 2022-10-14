@@ -65,7 +65,7 @@ const NavBar: React.FC<NavBarProps> = ({ contrast = false }: NavBarProps) => {
       borderRadius: 20 / 2,
     },
   }));
-  const [darkMode, setDarkMode] = React.useState(true);
+  //const [darkMode, setDarkMode] = React.useState(true);
   const color = contrast
     ? theme.palette.primary.contrastText
     : theme.palette.primary.main;

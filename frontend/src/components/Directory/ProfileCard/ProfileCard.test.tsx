@@ -22,7 +22,9 @@ const mockPerson = {
 
 describe("ProfileCard", () => {
   it("Renders the directory page with the mocked people", () => {
-    renderWithRouter(<ProfileCard person={mockPerson} onClick={jest.fn()} />);
+    renderWithRouter(
+      <ProfileCard person={mockPerson} onClick={jest.fn()} isStyled={true} />
+    );
     // check if main components are rendered
     expect(screen.getByTestId("name-area")).toBeTruthy();
     expect(screen.getByText("John H. Jackson")).toBeTruthy();
@@ -32,7 +34,9 @@ describe("ProfileCard", () => {
 
   it("Invokes 'handleClick' when clicked", () => {
     const handleClick = jest.fn();
-    renderWithRouter(<ProfileCard person={mockPerson} onClick={handleClick} />);
+    renderWithRouter(
+      <ProfileCard person={mockPerson} onClick={handleClick} isStyled={true} />
+    );
 
     expect(handleClick).toHaveBeenCalledTimes(0);
     fireEvent.click(screen.getByTestId("profile-card-target"));
