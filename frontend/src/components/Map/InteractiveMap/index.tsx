@@ -83,7 +83,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
 
   // Initialise plots
   useEffect(() => {
-    const churchCoords = [
+    const hallCoords = [
       { lat: -36.87274, lng: 174.78065 },
       { lat: -36.87294, lng: 174.78043 },
       { lat: -36.87305, lng: 174.7806 },
@@ -91,6 +91,34 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       { lat: -36.87296, lng: 174.78066 },
       { lat: -36.87283, lng: 174.78079 },
       { lat: -36.87274, lng: 174.78065 },
+    ];
+
+    const hallPlot = new google.maps.Polygon({
+      paths: hallCoords,
+      strokeColor: "#FFC0CB",
+      strokeOpacity: 0.6,
+      strokeWeight: 2,
+      fillColor: "#FFB6C1",
+      fillOpacity: 0.2,
+    });
+
+    const churchCoords = [
+      { lat: -36.87283, lng: 174.78016 },
+      { lat: -36.87287, lng: 174.78015 },
+      { lat: -36.87285, lng: 174.78 },
+      { lat: -36.87296, lng: 174.77999 },
+      { lat: -36.87296, lng: 174.78001 },
+      { lat: -36.87301, lng: 174.78 },
+      { lat: -36.87302, lng: 174.78011 },
+      { lat: -36.87305, lng: 174.78012 },
+      { lat: -36.87305, lng: 174.78018 },
+      { lat: -36.87303, lng: 174.78019 },
+      { lat: -36.87303, lng: 174.78024 },
+      { lat: -36.87297, lng: 174.78026 },
+      { lat: -36.87297, lng: 174.78034 },
+      { lat: -36.87286, lng: 174.7803 },
+    
+      { lat: -36.87283, lng: 174.78016 },
     ];
 
     const churchPlot = new google.maps.Polygon({
@@ -101,7 +129,8 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       fillColor: "#f9cb9c",
       fillOpacity: 0.2,
     });
-
+    
+  
     const pathCoords = [
       { lat: -36.87254, lng: 174.78053 },
       { lat: -36.87272, lng: 174.78024 },
@@ -110,7 +139,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       { lat: -36.87292, lng: 174.77998 },
       { lat: -36.87295, lng: 174.77999 },
       { lat: -36.87296, lng: 174.78003 },
-      { lat: -36.87301, lng: 174.78003 },
+      { lat: -36.873010, lng: 174.78003 },
       { lat: -36.873064, lng: 174.78016 },
       { lat: -36.873042, lng: 174.78034 },
       { lat: -36.87302, lng: 174.78038 },
@@ -127,7 +156,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
       { lat: -36.87276, lng: 174.7802578 },
       { lat: -36.872555, lng: 174.780555 },
     ];
-
+    
     const pathPlot = new google.maps.Polygon({
       paths: pathCoords,
       strokeColor: "#fafbdf",
@@ -138,38 +167,57 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     });
 
     const polygons = plots.reduce((polygonMap, plot) => {
-      const polygon = new google.maps.Polygon({
+      const polygon: google.maps.Polygon = new google.maps.Polygon({
         paths: plot.coordinates,
         strokeColor: plotColour,
         strokeOpacity: 0.6,
         strokeWeight: 2,
         fillColor: plotColour,
         fillOpacity: 0.2,
-        zIndex: 9999999,
+        zIndex: 9999999
       });
-
-      const icon = {
+      
+      const churchIcon = {
         url: "https://uxwing.com/wp-content/themes/uxwing/download/festival-culture-religion/church-building-icon.svg", // url
         scaledSize: new google.maps.Size(25, 25), // scaled size
         origin: new google.maps.Point(0, 0), // origin
         anchor: new google.maps.Point(13, 20), // origin
       };
 
+      const hallIcon = {
+        url: "https://cdn-icons-png.flaticon.com/512/4474/4474469.png", // url
+        scaledSize: new google.maps.Size(25, 25), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(13, 20), // origin
+      };
+
+
       const churchMarker = new google.maps.Marker({
-        position: { lat: -36.87289, lng: 174.78062 },
-        icon: icon,
+        position: { lat: -36.87293, lng: 174.78016 },
+        icon: churchIcon,
         map: map,
-        title: "St Mark's Parish Hall",
+        title: "St Mark's Church",
         optimized: false,
-        zIndex: 99999999,
+        zIndex:99999999,
         animation: google.maps.Animation.DROP,
       });
 
+      const hallhMarker = new google.maps.Marker({
+        position: { lat: -36.87289, lng: 174.78062 },
+        icon: hallIcon,
+        map: map,
+        title: "St Mark's Parish Hall",
+        optimized: false,
+        zIndex:99999999,
+        animation: google.maps.Animation.DROP,
+      });
+          
       pathPlot.setMap(map ?? null);
       churchPlot.setMap(map ?? null);
+      hallPlot.setMap(map ?? null);
       churchMarker.setMap(map ?? null);
+      hallhMarker.setMap(map ?? null);
       polygon.setMap(map ?? null);
-
       const point = averageCoordinates(plot.coordinates);
 
       const infowindow1 = new google.maps.InfoWindow({
@@ -227,7 +275,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
           if (e.target !== null) {
             const btn = e.target as Element;
             const btnNumber = Number(btn.id);
-            const profileLink: string = "'profile/" + personId[btnNumber] + "'";
+            const profileLink: string = "'/profile/" + personId[btnNumber] + "'";
             const aLink: string = "<a href=" + profileLink + ">";
 
             const fetchPromise = fetch(`/api/person/${personId[btnNumber]}`);
