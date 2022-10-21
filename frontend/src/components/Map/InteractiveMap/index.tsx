@@ -63,6 +63,21 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     }
   }, [mapRef, mapId]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  function handleLocationError(
+    browserHasGeolocation: boolean,
+    infoWindow: google.maps.InfoWindow,
+    pos: google.maps.LatLng
+  ) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(
+      browserHasGeolocation
+        ? "Error: The Geolocation service failed."
+        : "Error: Your browser doesn't support geolocation."
+    );
+    infoWindow.open(map);
+  }
+
   // Initialise overlay
   useEffect(() => {
     if (map) {
@@ -75,8 +90,50 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
           west: 174.779711,
         }
       ).setMap(map);
+      const infoWindow = new google.maps.InfoWindow();
+      const locationButton = document.createElement("button");
+      locationButton.innerHTML = "&#10148";
+      locationButton.classList.add("custom-map-control-button");
+      locationButton.style.borderRadius = "100%";
+      // locationButton.style.color = "#48abe0";
+      // locationButton.style.backgroundColor = "white";
+      locationButton.style.margin = "1%";
+      locationButton.style.padding = "10px";
+      map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(
+        locationButton
+      );
+      locationButton.style.position = "absolute";
+      locationButton.style.bottom = "0px";
+      locationButton.style.right = "0px";
+
+      locationButton.addEventListener("click", () => {
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position: GeolocationPosition) => {
+              const pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+
+              infoWindow.setPosition(pos);
+              infoWindow.setContent("You are here!");
+              infoWindow.open(map);
+              map.setCenter(pos);
+            },
+            () => {
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              handleLocationError(true, infoWindow, map.getCenter()!);
+            }
+          );
+        } else {
+          // Browser doesn't support Geolocation
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          handleLocationError(false, infoWindow, map.getCenter()!);
+        }
+      });
     }
-  }, [map]);
+  }, [handleLocationError, map]);
 
   const [polygonsByNumber, setPolygonsByNumber] =
     useState<Map<number, google.maps.Polygon>>();
